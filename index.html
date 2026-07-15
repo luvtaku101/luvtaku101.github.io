@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>釜山五天四夜旅遊攻略 + 旅費記錄</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --blue:#1A6FBF;--blu:#E8F2FB;--bld:#0E4D8A;
+  --coral:#D95C30;--corl:#FAECEA;
+  --green:#2E7D32;--grnl:#E8F5E9;
+  --purple:#5E35B1;--prpl:#EDE7F6;
+  --amber:#B45309;--ambl:#FEF3C7;
+  --teal:#0D7377;--teal-l:#E0F4F4;
+  --gray:#757575;--gryl:#F5F5F5;
+  --border:#E0E0E0;--text:#1A1A1A;--tx2:#555;
+  --bg:#FAFAF8;--r:14px;--rs:9px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{font-size:16px;}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+.hdr{background:linear-gradient(135deg,#0E4D8A 0%,#1A6FBF 55%,#2196F3 100%);padding:24px 18px 20px;text-align:center;color:#fff;}
+.hdr h1{font-size:21px;font-weight:700;letter-spacing:.4px;margin-bottom:4px;}
+.hdr p{font-size:13px;opacity:.88;}
+.hchips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+.hchip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:4px 11px;font-size:12px;color:#fff;}
+.tw{background:#fff;border-top:1px solid var(--border);position:fixed;left:0;right:0;bottom:52px;z-index:250;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tw::-webkit-scrollbar{display:none;}
+.tabs{display:flex;min-width:max-content;}
+.tab{padding:12px 13px;font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+.content{padding:0 0 130px;}
+.dp{display:none;}.dp.active{display:block;}
+.dh{background:#fff;padding:16px 16px 13px;border-bottom:1px solid var(--border);}
+.dh h2{font-size:18px;font-weight:700;margin-bottom:3px;}
+.dh .date{font-size:13px;color:var(--tx2);margin-bottom:10px;}
+.sc{display:flex;gap:6px;flex-wrap:wrap;}
+.sc span{background:var(--gryl);border-radius:20px;padding:4px 10px;font-size:12px;color:var(--tx2);}
+.travelt{background:#EDE7F6;border-left:4px solid var(--purple);border-radius:0 var(--rs) var(--rs) 0;padding:9px 12px;margin:10px 14px 0;font-size:13px;color:#3C1E8A;line-height:1.55;}
+.travelt strong{font-weight:700;}
+.na{background:var(--ambl);border-left:4px solid var(--amber);border-radius:0 var(--rs) var(--rs) 0;padding:10px 12px;margin:10px 14px 0;}
+.na .nt{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px;}
+.na .nx{font-size:13px;color:#92400E;line-height:1.55;}
+.nb{background:var(--blu);border-left:4px solid var(--blue);border-radius:0 var(--rs) var(--rs) 0;padding:10px 12px;margin:10px 14px 0;}
+.nb .nt{font-size:12px;font-weight:700;color:var(--bld);margin-bottom:3px;}
+.nb .nx{font-size:13px;color:var(--bld);line-height:1.55;}
+.leg{padding:10px 16px;display:flex;gap:12px;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--border);}
+.li{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--tx2);}
+.ld{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.tl{padding:12px 12px;display:flex;flex-direction:column;}
+.ti{display:flex;position:relative;}
+.tleft{display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;}
+.ttime{font-size:11px;color:var(--tx2);font-weight:500;padding-top:16px;text-align:center;width:48px;}
+.tdw{display:flex;flex-direction:column;align-items:center;}
+.tdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--bg);margin-top:16px;flex-shrink:0;z-index:2;}
+.tline{width:2px;flex:1;background:var(--border);margin-top:2px;min-height:16px;}
+.ti:last-child .tline{display:none;}
+.df{background:var(--coral);}.da{background:var(--blue);}.ds{background:var(--green);}.dt{background:var(--gray);}.dm{background:var(--amber);}.dk{background:var(--teal);}
+.card{flex:1;background:#fff;border:1px solid var(--border);border-radius:var(--r);margin:6px 0 9px 8px;overflow:hidden;cursor:pointer;transition:border-color .18s;}
+.card.open{border-color:var(--blue);}
+.ctop{padding:12px 12px 10px;display:flex;align-items:flex-start;gap:8px;}
+.cb{flex:1;min-width:0;}
+.ct{font-size:14.5px;font-weight:600;color:var(--text);line-height:1.4;}
+.cs{font-size:12.5px;color:var(--tx2);margin-top:3px;}
+.bdgs{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px;}
+.b{font-size:11px;padding:3px 8px;border-radius:20px;font-weight:600;line-height:1.3;}
+.bv{background:var(--prpl);color:var(--purple);}
+.bw{background:var(--corl);color:#A33A1A;}
+.bm{background:var(--corl);color:#A33A1A;}
+.bd{background:var(--gryl);color:var(--tx2);}
+.bt{background:var(--grnl);color:#1B5E20;}
+.bh{background:var(--blu);color:var(--bld);}
+.ba{background:var(--ambl);color:var(--amber);}
+.bk{background:var(--teal-l);color:var(--teal);}
+.chev{font-size:17px;color:#BDBDBD;flex-shrink:0;transition:transform .22s;}
+.card.open .chev{transform:rotate(180deg);color:var(--blue);}
+.det{display:none;padding:0 12px 12px;border-top:1px solid var(--border);}
+.det.show{display:block;}
+.dr{display:flex;gap:8px;margin-bottom:6px;}
+.dl{color:var(--tx2);min-width:52px;flex-shrink:0;font-size:12.5px;padding-top:1px;}
+.dv{color:var(--text);flex:1;line-height:1.5;font-size:13.5px;}
+.dv a{color:var(--blue);text-decoration:none;font-weight:500;}
+.bg{background:var(--grnl);border-radius:var(--rs);padding:9px 11px;margin-top:8px;}
+.bg .t{font-size:11px;font-weight:700;color:var(--green);margin-bottom:3px;}
+.bg .x{font-size:13px;color:#2E7D32;line-height:1.6;}
+.bo{background:var(--corl);border-radius:var(--rs);padding:9px 11px;margin-top:8px;}
+.bo .t{font-size:11px;font-weight:700;color:var(--coral);margin-bottom:3px;}
+.bo .x{font-size:13px;color:#7B3119;line-height:1.6;}
+.bb{background:var(--blu);border-radius:var(--rs);padding:9px 11px;margin-top:8px;}
+.bb .t{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px;}
+.bb .x{font-size:13px;color:var(--bld);line-height:1.6;}
+.bam{background:var(--ambl);border-radius:var(--rs);padding:9px 11px;margin-top:8px;}
+.bam .t{font-size:11px;font-weight:700;color:var(--amber);margin-bottom:3px;}
+.bam .x{font-size:13px;color:#92400E;line-height:1.6;}
+.bte{background:var(--teal-l);border-radius:var(--rs);padding:9px 11px;margin-top:8px;}
+.bte .t{font-size:11px;font-weight:700;color:var(--teal);margin-bottom:3px;}
+.bte .x{font-size:13px;color:var(--teal);line-height:1.6;}
+.cal-btn{display:inline-flex;align-items:center;gap:5px;background:#4285F4;color:#fff;border-radius:20px;padding:5px 13px;font-size:12px;font-weight:600;text-decoration:none;margin-top:7px;}
+.cal-btn:hover{background:#2b6fd4;}
+.cal-box{background:#EDF3FE;border-radius:var(--rs);padding:10px 12px;margin-top:8px;}
+.cal-box .cal-title{font-size:12px;font-weight:700;color:#1A3C8A;margin-bottom:7px;}
+.cal-grid{display:flex;flex-direction:column;gap:6px;}
+ul.x li{margin-left:14px;margin-bottom:3px;}
+.xcard{background:#fff;border:1px solid var(--border);border-radius:var(--rs);padding:10px 12px;margin-top:8px;}
+.xcard .xn{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.xcard .xi{font-size:12.5px;color:var(--tx2);line-height:1.55;}
+.xcard a{color:var(--blue);text-decoration:none;font-weight:500;font-size:12.5px;}
+/* BREAKFAST CARD */
+.bkfast{background:var(--teal-l);border-radius:var(--rs);padding:10px 12px;margin:10px 14px 0;}
+.bkfast .bft{font-size:12px;font-weight:700;color:var(--teal);margin-bottom:6px;}
+.bkfast-items{display:flex;flex-direction:column;gap:7px;}
+.bfi{background:#fff;border-radius:var(--rs);padding:9px 11px;}
+.bfi .bn{font-size:13.5px;font-weight:600;color:var(--text);}
+.bfi .bs{font-size:12px;color:var(--tx2);line-height:1.5;margin-top:2px;}
+.bfi a{color:var(--blue);text-decoration:none;font-weight:500;font-size:12px;}
+/* TIPS */
+.tips{padding:13px 13px 60px;display:flex;flex-direction:column;gap:11px;}
+.tc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px;}
+.tc h3{font-size:15.5px;font-weight:700;color:var(--text);margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.tb{font-size:13.5px;color:var(--tx2);line-height:1.7;}
+.tb strong{color:var(--text);}
+.tb a{color:var(--blue);text-decoration:none;font-weight:500;}
+.tr{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #F0F0F0;font-size:13px;gap:8px;}
+.tr:last-child{border-bottom:none;}
+.tr .l{color:var(--tx2);flex-shrink:0;}
+.tr .v{color:var(--text);font-weight:500;text-align:right;}
+.vg{margin-bottom:9px;}
+.vl{font-size:12.5px;font-weight:700;color:var(--tx2);margin-bottom:4px;}
+.vi{font-size:13.5px;color:var(--text);padding:4px 0 4px 10px;border-left:3px solid var(--blu);margin-bottom:3px;}
+.wr{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #F0F0F0;}
+.wr:last-child{border-bottom:none;}
+.wdot{width:7px;height:7px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:6px;}
+.wc{flex:1;}
+.wt{font-weight:700;color:var(--coral);font-size:12.5px;margin-bottom:2px;}
+.wx{color:var(--text);font-size:13.5px;line-height:1.5;}
+.calc{background:var(--blu);border-radius:var(--rs);padding:11px;margin-top:7px;}
+.calc h4{font-size:12.5px;font-weight:700;color:var(--bld);margin-bottom:7px;}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;}
+.cgi{font-size:13px;color:var(--bld);}
+.cgi .hkd{font-weight:700;}
+.cgi .krw{color:var(--blue);font-size:12px;}
+/* DUVET COMPARE TABLE */
+.dtbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px;}
+.dtbl th{background:var(--blu);color:var(--bld);padding:7px 8px;text-align:left;font-weight:700;font-size:12px;}
+.dtbl td{padding:7px 8px;border-bottom:1px solid #F0F0F0;vertical-align:top;line-height:1.4;}
+.dtbl tr:last-child td{border-bottom:none;}
+.dtbl .star{color:var(--amber);font-weight:700;}
+.badge-top{display:inline-block;background:var(--grnl);color:#1B5E20;border-radius:20px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:4px;}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root{
+  --navy:#1B2A4A;--navy2:#243659;
+  --gold:#C9A84C;--gold2:#E4C06A;--gold-light:#FDF6E3;
+  --ex-coral:#E05C47;--ex-coral-light:#FEF0EE;
+  --ex-teal:#1A8A7F;--ex-teal-light:#E8F7F6;
+  --ex-purple:#6B4FBB;--ex-purple-light:#F0ECFB;
+  --ex-green:#2A7D4F;--ex-green-light:#E8F7EE;
+  --ex-bg:#F4F1EB;--white:#FFFFFF;
+  --ex-text:#1B2A4A;--ex-text2:#6B7A99;
+  --ex-border:#DDD8CC;--radius:14px;
+  --shadow:0 4px 20px rgba(27,42,74,0.10);
+  --shadow-sm:0 2px 8px rgba(27,42,74,0.08);
+}
+.exp-app{font-family:'Noto Sans TC',sans-serif;background:var(--ex-bg);color:var(--ex-text);min-height:100vh;padding-bottom:190px;}
+
+/* HEADER */
+.ehdr{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:22px 18px 20px;text-align:center;position:relative;overflow:hidden;}
+.ehdr::before{content:'₩';position:absolute;right:-10px;top:-15px;font-size:120px;color:rgba(201,168,76,0.08);font-family:'DM Mono',monospace;}
+.ehdr h1{font-size:19px;font-weight:700;color:var(--white);letter-spacing:.5px;}
+.ehdr p{font-size:12.5px;color:rgba(255,255,255,0.6);margin-top:3px;}
+.rate-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;background:rgba(255,255,255,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:30px;padding:8px 16px;width:fit-content;margin-left:auto;margin-right:auto;}
+.rate-bar label{font-size:11.5px;color:var(--gold2);}
+.rate-input{background:transparent;border:none;color:var(--gold);font-family:'DM Mono',monospace;font-size:14px;font-weight:500;width:50px;text-align:center;outline:none;}
+.rate-bar span{font-size:11.5px;color:rgba(255,255,255,0.5);}
+
+/* SUMMARY BAR */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 16px;background:var(--white);border-bottom:1px solid var(--ex-border);}
+.sum-item{text-align:center;}
+.sum-label{font-size:11px;color:var(--ex-text2);margin-bottom:3px;}
+.sum-val{font-size:16px;font-weight:700;color:var(--ex-text);font-family:'DM Mono',monospace;}
+.sum-val.krw{color:var(--navy);}
+.sum-val.hkd{color:var(--gold);}
+.sum-val.count{color:var(--ex-teal);}
+
+/* TABS */
+.tabs-wrap{background:var(--white);border-top:1px solid var(--ex-border);overflow-x:auto;scrollbar-width:none;position:fixed;left:0;right:0;bottom:52px;z-index:250;}
+.tabs-wrap::-webkit-scrollbar{display:none;}
+.etabs{display:flex;min-width:max-content;}
+.tab-btn{padding:11px 14px;font-size:13px;font-weight:500;color:var(--ex-text2);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;transition:all .18s;}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--gold);}
+
+/* DAY PANEL */
+.day-panel{display:none;padding:14px 16px;}
+.day-panel.active{display:block;}
+.day-total-bar{background:var(--navy);border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+.day-total-bar .label{font-size:12px;color:rgba(255,255,255,0.6);}
+.day-total-bar .vals{text-align:right;}
+.day-total-bar .krw-total{font-size:16px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace;}
+.day-total-bar .hkd-total{font-size:12px;color:rgba(255,255,255,0.65);font-family:'DM Mono',monospace;margin-top:1px;}
+
+/* ADD FORM */
+.add-form{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:14px;margin-bottom:14px;border:1px solid var(--ex-border);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.form-row.full{grid-template-columns:1fr;}
+.field label{display:block;font-size:11px;font-weight:600;color:var(--ex-text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
+.field input,.field select{width:100%;background:var(--ex-bg);border:1.5px solid var(--ex-border);border-radius:8px;padding:9px 11px;font-size:14px;font-family:inherit;color:var(--ex-text);outline:none;transition:border-color .18s;}
+.field input:focus,.field select:focus{border-color:var(--gold);}
+.field input[type="number"]{font-family:'DM Mono',monospace;}
+.add-btn{width:100%;background:var(--navy);color:var(--white);border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .18s;margin-top:4px;}
+.add-btn:active{background:var(--navy2);}
+
+/* CATEGORY CHIPS */
+.cat-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.cat-chip{padding:5px 11px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:all .15s;background:var(--ex-bg);color:var(--ex-text2);border-color:var(--ex-border);}
+.cat-chip.selected,.cat-chip:hover{border-color:transparent;}
+.cat-chip[data-cat="🍽️ 美食"].selected{background:var(--ex-coral-light);color:var(--ex-coral);border-color:var(--ex-coral);}
+.cat-chip[data-cat="🛍️ 購物"].selected{background:var(--ex-purple-light);color:var(--ex-purple);border-color:var(--ex-purple);}
+.cat-chip[data-cat="🚕 交通"].selected{background:var(--ex-teal-light);color:var(--ex-teal);border-color:var(--ex-teal);}
+.cat-chip[data-cat="🎢 門票"].selected{background:var(--ex-green-light);color:var(--ex-green);border-color:var(--ex-green);}
+.cat-chip[data-cat="🏨 住宿"].selected{background:#EEF2FF;color:#4338CA;border-color:#818CF8;}
+.cat-chip[data-cat="💊 其他"].selected{background:#FEF3C7;color:#92400E;border-color:#F59E0B;}
+
+/* ENTRIES LIST */
+.entries{display:flex;flex-direction:column;gap:8px;}
+.entry{background:var(--white);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm);border:1px solid var(--ex-border);}
+.entry-cat{font-size:18px;flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--ex-bg);}
+.entry-body{flex:1;min-width:0;}
+.entry-desc{font-size:13.5px;font-weight:500;color:var(--ex-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.entry-meta{font-size:11.5px;color:var(--ex-text2);margin-top:1px;}
+.entry-amounts{text-align:right;flex-shrink:0;}
+.entry-krw{font-size:14px;font-weight:700;color:var(--ex-text);font-family:'DM Mono',monospace;}
+.entry-hkd{font-size:11.5px;color:var(--ex-text2);font-family:'DM Mono',monospace;margin-top:1px;}
+.del-btn{background:none;border:none;cursor:pointer;font-size:16px;color:#CCC;padding:4px;flex-shrink:0;line-height:1;}
+.del-btn:hover{color:var(--ex-coral);}
+.empty{text-align:center;padding:32px 20px;color:var(--ex-text2);font-size:13.5px;}
+.empty .icon{font-size:36px;margin-bottom:8px;}
+
+/* EXPORT BTN */
+.export-bar{position:fixed;bottom:98px;left:0;right:0;background:var(--white);border-top:1px solid var(--ex-border);padding:12px 16px;display:flex;gap:10px;z-index:250;}
+.export-btn{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;}
+.export-btn.excel{background:var(--ex-green);color:#fff;}
+.export-btn.clear{background:var(--ex-bg);color:var(--ex-text2);border:1.5px solid var(--ex-border);}
+.export-btn:active{opacity:.85;}
+
+/* OVERVIEW TAB */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.ov-card{background:var(--white);border-radius:12px;padding:14px;box-shadow:var(--shadow-sm);border:1px solid var(--ex-border);}
+.ov-card .day-name{font-size:12px;color:var(--ex-text2);margin-bottom:4px;}
+.ov-card .day-krw{font-size:16px;font-weight:700;color:var(--ex-text);font-family:'DM Mono',monospace;}
+.ov-card .day-hkd{font-size:12px;color:var(--gold);font-family:'DM Mono',monospace;margin-top:2px;}
+.ov-card .day-bar{height:4px;background:var(--ex-bg);border-radius:2px;margin-top:8px;overflow:hidden;}
+.ov-card .day-bar-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:2px;transition:width .4s;}
+.cat-breakdown{background:var(--white);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);border:1px solid var(--ex-border);}
+.cat-breakdown h3{font-size:13px;font-weight:700;color:var(--ex-text);margin-bottom:12px;}
+.cat-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F0EDE6;font-size:13px;}
+.cat-row:last-child{border-bottom:none;}
+.cat-row .cn{color:var(--ex-text);}
+.cat-row .cv{font-family:'DM Mono',monospace;color:var(--navy);font-weight:600;}
+
+/* TOOLTIP KRW → HKD convert display */
+.convert-hint{text-align:center;font-size:12px;color:var(--ex-text2);margin-top:6px;font-family:'DM Mono',monospace;}
+
+/* ===== MASTER APP SWITCHER (bottom nav, mobile-first) ===== */
+.app-switch{position:fixed;left:0;right:0;bottom:0;z-index:300;display:flex;height:52px;background:#0B3A66;box-shadow:0 -2px 10px rgba(0,0,0,.15);}
+.switch-btn{flex:1;border:none;background:transparent;color:rgba(255,255,255,.62);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;border-top:3px solid transparent;transition:all .18s;letter-spacing:.2px;}
+.switch-btn.active{color:#fff;background:rgba(255,255,255,.09);border-top-color:#FFD54F;}
+.switch-btn:active{background:rgba(255,255,255,.16);}
+
+/* ===== HOME DASHBOARD ===== */
+.home-app{background:var(--ex-bg);min-height:100vh;padding-bottom:100px;}
+.home-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:26px 20px 22px;text-align:center;position:relative;overflow:hidden;color:#fff;}
+.home-hero::before{content:'부산';position:absolute;right:-6px;top:-10px;font-size:80px;font-weight:900;color:rgba(255,255,255,0.06);letter-spacing:2px;}
+.hero-flag{position:absolute;left:20px;top:24px;font-size:11px;font-weight:700;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:5px;padding:2px 6px;letter-spacing:.5px;}
+.home-hero h1{font-size:21px;font-weight:700;letter-spacing:.5px;margin-bottom:5px;}
+.home-hero .sub{font-size:12.5px;color:rgba(255,255,255,.75);}
+.home-hero .hchips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:11px;}
+.home-hero .hchip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:4px 11px;font-size:11.5px;color:#fff;}
+
+.home-summary{display:grid;grid-template-columns:repeat(3,1fr);background:var(--white);margin:14px 16px 0;border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--ex-border);overflow:hidden;}
+.hs-item{padding:16px 8px;text-align:center;border-right:1px solid var(--ex-border);}
+.hs-item:last-child{border-right:none;}
+.hs-val{font-size:16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;}
+.hs-val.gold{color:var(--gold);}
+.hs-label{font-size:11px;color:var(--ex-text2);margin-top:4px;}
+
+.home-nav{padding:16px 16px 0;display:flex;flex-direction:column;gap:10px;}
+.hn-card{background:var(--white);border:1px solid var(--ex-border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:13px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s,transform .1s;}
+.hn-card:active{transform:scale(.98);border-color:var(--gold);}
+.hn-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.hn-body{flex:1;min-width:0;}
+.hn-title{font-size:14.5px;font-weight:700;color:var(--ex-text);}
+.hn-sub{font-size:12px;color:var(--ex-text2);margin-top:2px;}
+.hn-chev{font-size:18px;color:#C6BFAE;flex-shrink:0;}
+
+.home-hotel{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);border-radius:var(--radius);margin:16px 16px 0;padding:16px;color:#fff;}
+.hh-label{font-size:11px;color:rgba(255,255,255,.65);font-weight:600;letter-spacing:.4px;margin-bottom:5px;}
+.hh-name{font-size:14.5px;font-weight:700;}
+.hh-addr{font-size:12.5px;color:rgba(255,255,255,.85);margin-top:2px;}
+.hh-btn{display:inline-flex;align-items:center;gap:5px;margin-top:10px;background:#fff;color:var(--navy);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;text-decoration:none;}
+
+/* ===== MINI APP HEADERS (itin/checklist/tips) ===== */
+.mini-hdr{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:16px 18px 14px;color:#fff;}
+.mini-hdr h2{font-size:16px;font-weight:700;}
+.mini-hdr p{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px;}
+
+/* ===== TIPS SUB-TABS ===== */
+.stw{background:#fff;border-bottom:1px solid var(--border);position:fixed;left:0;right:0;bottom:52px;z-index:250;}
+.stabs{display:flex;}
+.stabs .tab{flex:1;text-align:center;}
+.tp{display:none;}.tp.active{display:block;}
+
+/* ===== BOTTOM NAV (5 tabs, icon+label) ===== */
+.app-switch{height:58px;}
+.switch-btn{flex-direction:column;gap:2px;font-size:10.5px;font-weight:600;}
+.switch-btn .ic{font-size:18px;}
+</style>
+</head>
+<body>
+<div class="app-switch">
+  <button class="switch-btn active" id="btn-home" onclick="switchApp('home')"><span class="ic">🏠</span><span>首頁</span></button>
+  <button class="switch-btn" id="btn-itin" onclick="switchApp('itin')"><span class="ic">📖</span><span>行程</span></button>
+  <button class="switch-btn" id="btn-exp" onclick="switchApp('exp')"><span class="ic">💰</span><span>記帳</span></button>
+  <button class="switch-btn" id="btn-checklist" onclick="switchApp('checklist')"><span class="ic">✅</span><span>清單</span></button>
+  <button class="switch-btn" id="btn-tips" onclick="switchApp('tips')"><span class="ic">💡</span><span>貼士</span></button>
+</div>
+
+<!-- ===================== HOME ===================== -->
+<div class="home-app" id="homeApp">
+  <div class="home-hero">
+    <div class="hero-flag">KR</div>
+    <h1>釜山之旅</h1>
+    <div class="sub">07/08 – 11/08/2026 · 4人同行 · Poolvilla Gaon</div>
+    <div class="hchips">
+      <span class="hchip">UO674 去 · UO675 回</span>
+      <span class="hchip">釜山通行證 BIG5</span>
+      <span class="hchip">5天4夜</span>
+    </div>
+  </div>
+
+  <div class="home-summary">
+    <div class="hs-item"><div class="hs-val" id="home-krw">₩0</div><div class="hs-label">韓圜支出</div></div>
+    <div class="hs-item"><div class="hs-val gold" id="home-hkd">HK$0</div><div class="hs-label">港幣等值</div></div>
+    <div class="hs-item"><div class="hs-val" id="home-count">0</div><div class="hs-label">已記錄數</div></div>
+  </div>
+
+  <div class="home-nav">
+    <div class="hn-card" onclick="switchApp('itin')">
+      <div class="hn-icon" style="background:var(--blu)">🗺️</div>
+      <div class="hn-body"><div class="hn-title">行程攻略</div><div class="hn-sub">5天行程 · 景點詳情 · 出發準備</div></div>
+      <div class="hn-chev">›</div>
+    </div>
+    <div class="hn-card" onclick="switchApp('exp')">
+      <div class="hn-icon" style="background:var(--ambl)">💰</div>
+      <div class="hn-body"><div class="hn-title">旅費記錄</div><div class="hn-sub">按日記錄支出 · 自動換算港幣</div></div>
+      <div class="hn-chev">›</div>
+    </div>
+    <div class="hn-card" onclick="switchApp('checklist')">
+      <div class="hn-icon" style="background:var(--grnl)">✅</div>
+      <div class="hn-body"><div class="hn-title">出發清單</div><div class="hn-sub">行前準備 · 逐項打勾</div></div>
+      <div class="hn-chev">›</div>
+    </div>
+    <div class="hn-card" onclick="openTips(0)">
+      <div class="hn-icon" style="background:var(--prpl)">💡</div>
+      <div class="hn-body"><div class="hn-title">換錢 &amp; 實用貼士</div><div class="hn-sub">匯率 · 交通 · 注意事項</div></div>
+      <div class="hn-chev">›</div>
+    </div>
+    <div class="hn-card" onclick="openTips(1)">
+      <div class="hn-icon" style="background:var(--blu)">🛏️</div>
+      <div class="hn-body"><div class="hn-title">棉被攻略</div><div class="hn-sub">質料分析 · 韓文關鍵字</div></div>
+      <div class="hn-chev">›</div>
+    </div>
+  </div>
+
+  <div class="home-hotel">
+    <div class="hh-label">🏠 酒店地址 — 打的士直接出示</div>
+    <div class="hh-name">Poolvilla Gaon 풀빌라 가온</div>
+    <div class="hh-addr">부산 중구 남포동2가 32-2</div>
+    <a class="hh-btn" href="https://maps.app.goo.gl/iX8tzzSBaZXXLAX97" target="_blank">📍 Google Maps 導航 →</a>
+  </div>
+</div>
+
+<!-- ===================== ITINERARY ===================== -->
+<div class="itin-app" id="itinApp" style="display:none">
+<div class="mini-hdr">
+  <h2>🗺️ 行程攻略</h2>
+  <p>07/08 – 11/08/2026 · 點擊各項目查看詳情</p>
+</div>
+
+<div class="tw">
+  <div class="tabs">
+    <button class="tab active" onclick="sd(0)">第一天 07/08</button>
+    <button class="tab" onclick="sd(1)">第二天 08/08</button>
+    <button class="tab" onclick="sd(2)">第三天 09/08</button>
+    <button class="tab" onclick="sd(3)">第四天 10/08</button>
+    <button class="tab" onclick="sd(4)">第五天 11/08</button>
+  </div>
+</div>
+
+<div class="content">
+<div class="dp active" id="day-1">
+  <div class="dh">
+    <h2>第一天 — 抵達釜山 · 南浦洞</h2>
+    <div class="date">星期五，07/08/2026</div>
+    <div class="sc"><span>📍 南浦洞</span><span>🍜 小麥冷麵 · 烤腸 · 光復路</span></div>
+  </div>
+  <div class="travelt">🚕 <strong>機場→酒店：</strong>計程車約40分鐘 ≈ ₩35,000–45,000 ≈ HK$190–240<br>🚶 <strong>酒店→南浦洞各景點：</strong>步行10–15分鐘（酒店位於南浦洞核心）</div>
+
+  <div class="nb">
+    <div class="nt">📱 Kakao T 叫的士提示</div>
+    <div class="nx">
+      每次上車前先問司機：「<strong>카드 되나요？</strong>」（可以刷卡嗎？）如不能則用現金。詳細設定請看「📋 出發準備」分頁。
+    </div>
+  </div>
+
+  <div class="leg">
+    <div class="li"><div class="ld" style="background:var(--coral)"></div>美食</div>
+    <div class="li"><div class="ld" style="background:var(--blue)"></div>景點</div>
+    <div class="li"><div class="ld" style="background:var(--green)"></div>購物</div>
+    <div class="li"><div class="ld" style="background:var(--amber)"></div>換錢</div>
+  </div>
+  <div class="tl">
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">13:35</div><div class="tdw"><div class="tdot dt"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca0" onclick="tg('a0')">
+        <div class="ctop"><div class="cb"><div class="ct">抵達金海國際機場</div><div class="cs">Gimhae International Airport (PUS) · UO674 落地</div><div class="bdgs"><span class="b bd">入境+取行李約55分鐘</span><span class="b bw">4件行李需時較長</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da0">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport+Busan" target="_blank">金海國際機場 → Google Maps</a></span></div>
+          <div class="bb"><div class="t">⏱ 抵達流程時間估算</div><ul class="x">
+            <li><strong>13:35</strong> — UO674 落地</li>
+            <li><strong>13:35–14:00</strong> — 滑行、下機、步行至入境大廳（約25分鐘）</li>
+            <li><strong>14:00–14:20</strong> — 入境審查（Immigration）· 非韓國公民隊伍，預計約15–20分鐘</li>
+            <li><strong>14:20–14:35</strong> — 等候及提取行李（4件大行李，轉盤需時）</li>
+            <li><strong>14:35</strong> — 出入境大廳，前往計程車乘車處</li>
+          </ul></div>
+          <div class="bam"><div class="t">⚠️ 4件大行李注意</div><div class="x">4件大行李（含棉被回程）需較大的士廂型車。出閘後找 <strong>「大型計程車」（대형 택시）</strong> 或 <strong>KKV Taxi</strong> 乘車處，可容納多件大行李。費用約₩50,000–60,000。</div></div>
+          <div class="bg"><div class="t">抵達酒店後</div><div class="x">第二天晚餐（朝鮮의韓牛불꽃쇼 火焰秀）已用 CatchTable 預約好，不用再麻煩前台致電，安心Check-in即可！</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">14:35</div><div class="tdw"><div class="tdot dt"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca0c" onclick="tg('a0c')">
+        <div class="ctop"><div class="cb"><div class="ct">乘計程車 → Poolvilla Gaon 酒店</div><div class="cs">南浦洞 · 車程約40分鐘 · 4件大行李建議叫廂型車</div><div class="bdgs"><span class="b bd">車程約40分鐘</span><span class="b bh">₩45,000–60,000</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da0c">
+          <div class="dr"><span class="dl">酒店地圖</span><span class="dv"><a href="https://maps.app.goo.gl/iX8tzzSBaZXXLAX97" target="_blank">Poolvilla Gaon → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">韓文地址</span><span class="dv">부산 중구 남포동2가 32-2</span></div>
+          <div class="bb"><div class="t">⏱ 預計抵達酒店時間</div><div class="x">
+            <strong>14:35</strong> 出發 → 計程車約40分鐘 → <strong>15:15</strong> 抵達酒店<br>
+            辦理入住（Check-in）+ 放行李 + 梳洗換衣：約30分鐘<br>
+            <strong>15:45</strong> 出發開始行程 ✅
+          </div></div>
+          <div class="bam"><div class="t">廂型計程車韓文</div><div class="x">如需大型計程車，可對司機說：<br>「<strong>남포동 풀빌라 가온 호텔로 가주세요</strong>」<br>（請載我去南浦洞 Poolvilla Gaon 酒店）</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">15:45</div><div class="tdw"><div class="tdot dm"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca0b" onclick="tg('a0b')">
+        <div class="ctop"><div class="cb"><div class="ct">換錢 — 南浦洞最佳換錢所</div><div class="cs">Moneybox / 友利換錢所 · 步行約10分鐘</div><div class="bdgs"><span class="b ba">釜山最佳匯率</span><span class="b bh">Moneybox 至21:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da0b">
+          <div class="xcard"><div class="xn">① Moneybox Nampo ⭐ 4.9（首選）</div><div class="xi">光復路38號1樓 · 平日09:00–21:00，週末10:00–21:00 · +82 51-245-9998 · 無需護照，亦售SIM卡</div><a href="https://www.google.com/maps/search/?api=1&query=Moneybox+Nampo+Currency+Exchange+Busan" target="_blank">→ Google Maps</a></div>
+          <div class="xcard" style="margin-top:8px;"><div class="xn">② 友利換錢所 Woori Exchange ⭐ 4.4</div><div class="xi">光復路97街1號 · 08:30–20:00 每日 · +82 10-7670-7987 · 接受 HKD ✅</div><a href="https://www.google.com/maps/search/?api=1&query=Woori+Exchange+Nampo+Busan" target="_blank">→ Google Maps</a></div>
+          <div class="bam"><div class="t">換錢貼士</div><div class="x">兩間互為鄰居，建議兩間都問「<strong>Hong Kong Dollar rate?</strong>」比價後再換。釜山換錢所通常<strong>沒有電子告示板</strong>，需直接入內查詢。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">16:00</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca1" onclick="tg('a1')">
+        <div class="ctop"><div class="cb"><div class="ct">下午茶 — 할매가야밀면 小麥冷麵</div><div class="cs">光復路56-14 · ⭐ 3.9 · 步行10分鐘</div><div class="bdgs"><span class="b bm">必吃</span><span class="b bd">約1小時</span><span class="b bh">10:15–21:30</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da1">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=할매가야밀면+Nampo+Busan" target="_blank">哈利琴小麥冷麵 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 51-246-3314</span></div>
+          <div class="bo"><div class="t">必點推薦</div><ul class="x"><li>수냉면 水冷麵 — 湯頭帶中藥香，碎冰清爽，夏日消暑第一名</li><li>비빔밀면 拌冷麵 — 甜辣紅醬汁，開胃下飯</li><li>만두 韓式蒸餃 — 皮薄餡多，冷麵最佳拍檔</li></ul></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">下午時段人流較少，可以舒服地坐下享用，當作抵埗後的下午茶。備現金約₩20,000–30,000。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">17:00</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca2" onclick="tg('a2')">
+        <div class="ctop"><div class="cb"><div class="ct">國際市場棉被街 — 順路勘查（今天先睇，第四天比價）</div><div class="cs">國際市場 · 步行10分鐘</div><div class="bdgs"><span class="b bd">今天勘查，第四天大明＋京信比價</span><span class="b bh">09:00–20:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da2">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Gukjesijang+bedding+street+Busan" target="_blank">國際市場棉被街 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">詳細棉被攻略</div><div class="x">請看「🛏️ 棉被攻略」分頁，有完整質料分析及韓文關鍵字。今天先到現場感受一下環境，第四天再到大明寢具、京信寢具兩間比價購買。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">18:00</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca3" onclick="tg('a3')">
+        <div class="ctop"><div class="cb"><div class="ct">Daiso 南浦店購物</div><div class="cs">南浦洞 · 步行5分鐘</div><div class="bdgs"><span class="b bd">約30分鐘</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da3">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Daiso+Nampo+Busan" target="_blank">Daiso 南浦店 → Google Maps</a></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">19:00</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca5b" onclick="tg('a5b')">
+        <div class="ctop"><div class="cb"><div class="ct">晚餐前行街 — 光復路時尚街</div><div class="cs">Gwangbok-ro Fashion Street · ⭐ 4.3 · 步行5分鐘</div><div class="bdgs"><span class="b bd">逛街約45分鐘</span><span class="b bh">大部分店舖21:00–22:00關門</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da5b">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Gwangbok+Fashion+Street+Busan" target="_blank">光復路時尚街 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">遊覽貼士</div><div class="x">大部分店舖約21:00–22:00關門，晚餐前逛剛剛好，逛完再步行去大洋烤腸食晚餐。Nike、Adidas、Kodak 等潮流品牌及本地服裝。往BIFF廣場方向走有黑糖餅（흑설탕호떡）街頭小食。</div></div>
+          <div class="bam"><div class="t">💊 順道留意藥局</div><div class="x">行街時留意附近有沒有藥局（약국），記低位置及營業時間，以備不時之需（暈車浪、感冒藥、腸胃藥等）。光復路一帶藥局較多，一般營業至21:00–22:00。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">20:00</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca4" onclick="tg('a4')">
+        <div class="ctop"><div class="cb"><div class="ct">晚餐 — 大洋烤腸 대양곱창</div><div class="cs">富平洞2街42-7 · ⭐ 4.4 · 步行10分鐘</div><div class="bdgs"><span class="b bm">必吃</span><span class="b bt">免訂位</span><span class="b bd">約1.5小時</span><span class="b bh">周二休息</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da4">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=대양곱창+Bupyeong+Busan" target="_blank">大洋烤腸 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 51-243-5165 · 11:00–03:00（周二休息）</span></div>
+          <div class="bo"><div class="t">必點推薦</div><ul class="x"><li>烤牛小腸 — 點「鹽烤＋調味雙拼」兩種口味一次滿足</li><li>炒飯 볶음밥 — 用烤腸油脂炒出的靈魂飯！</li></ul></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">20:00這個時段人流未算高峰，排隊時間較短，是抵埗第一天晚餐的好選擇！老闆娘非常親切，會幫忙烤肉。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">消夜</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="ca5" onclick="tg('a5')">
+        <div class="ctop"><div class="cb"><div class="ct">消夜 — BHC 炸雞（外帶回酒店）</div><div class="cs">BIFF廣場路31-1 · ⭐ 4.8 · 步行2分鐘</div><div class="bdgs"><span class="b bd">外帶回 Pool Villa</span><span class="b bh">12:00–00:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="da5">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=BHC+chicken+Nampo+BIFF+Busan" target="_blank">BHC 炸雞南浦店 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">BHC 必點 Bburinkle 蜂蜜芥末口味。外帶回 Pool Villa 享用，完美收尾第一天！</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DAY 2 ===== -->
+<div class="dp" id="day-2">
+  <div class="dh">
+    <h2>第二天 — 機張冒險日</h2>
+    <div class="date">星期六，08/08/2026</div>
+    <div class="sc"><span>📍 機張郡</span><span>🎢 滑車 · 樂天世界 · 韓牛火焰秀</span></div>
+  </div>
+  <div class="travelt">⏰ <strong>今日提早出發！</strong>酒店 09:00 出發 → 計程車約45分鐘 → 09:45 抵達 Skyline Luge<br>🚕 <strong>由酒店到 Skyline Luge：</strong>計程車約45分鐘 ≈ ₩45,000–55,000 ≈ HK$240–295（無法步行）</div>
+
+  <div class="bkfast">
+    <div class="bft">🍳 早餐建議（附近步行可達，⚠️ 今日要早，建議08:30前用餐完畢）</div>
+    <div class="bkfast-items">
+      <div class="bfi">
+        <div class="bn">① 신창토스트 Sinchang Toast ⭐ 4.4 — 韓式吐司首選！</div>
+        <div class="bs">光復路39街21-1 · 07:00–17:30（周三休息） · +82 51-245-1724<br>招牌：火腿芝士雞蛋吐司 + 新鮮果汁。老闆夫婦超熱情，食客必打卡！<br><a href="https://www.google.com/maps/search/?api=1&query=Sinchang+Toast+Nampo+Busan" target="_blank">→ Google Maps</a></div>
+      </div>
+      <div class="bfi">
+        <div class="bn">② EGGDROP 南浦店 ⭐ 4.0 — 網紅蛋沙律三文治</div>
+        <div class="bs">光復路83-1 · 08:00–19:00 每日 · 有英文點餐機，免排隊壓力。<br>推薦：American Cheese Egg Roll。使用信用卡付款，不收現金。<br><a href="https://www.google.com/maps/search/?api=1&query=EGGDROP+Nampo+Busan" target="_blank">→ Google Maps</a></div>
+      </div>
+      <div class="bfi">
+        <div class="bn">③ 便利店 GS25 / CU — 最快捷選擇</div>
+        <div class="bs">酒店附近步行1–2分鐘。韓國便利店三文治、飯糰、美式咖啡，性價比極高，適合趕時間。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl">
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">09:00</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cb00" onclick="tg('b00')">
+        <div class="ctop"><div class="cb"><div class="ct">出發 — 酒店 → Skyline Luge</div><div class="cs">Poolvilla Gaon · 計程車約45分鐘</div><div class="bdgs"><span class="b bw">⚠️ 準時09:00出發</span><span class="b bh">09:45抵達</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="db00">
+          <div class="bam"><div class="t">今早要早起！</div><div class="x">早餐盡量08:30前解決（可用便利店方案），08:45前於酒店大堂集合叫車，09:00準時出發，才能09:45到達，避開10:00後的人龍。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">09:45</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cb0" onclick="tg('b0')">
+        <div class="ctop"><div class="cb"><div class="ct">Skyline Luge 釜山滑車</div><div class="cs">機張海岸路205 · ⭐ 4.6（3,301則）</div><div class="bdgs"><span class="b bv">釜山通行證 A-1</span><span class="b bd">約1.5小時</span><span class="b bh">10:00–18:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="db0">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Skyline+Luge+Busan+Gijang" target="_blank">Skyline Luge → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">官網</span><span class="dv"><a href="https://www.skylineluge.com/ko/busan" target="_blank">skylineluge.com →</a></span></div>
+          <div class="bb"><div class="t">身高規定（女兒125cm）</div><ul class="x"><li>滑車：已超110cm，可獨立乘坐 ✅</li><li>上山吊椅：未達135cm，須成人同乘 ⚠️</li></ul></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">用 VBP A-1 免費入場。09:45提早到達，10:00開場即玩，避開10:00後的人龍。安排至少3次滑行！</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">12:00</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cb1" onclick="tg('b1')">
+        <div class="ctop"><div class="cb"><div class="ct">午餐 — 機張長腳蟹（推薦：기장명품대게）</div><div class="cs">機張市場街 · ⭐ 4.7（389則）· 區內步行5分鐘</div><div class="bdgs"><span class="b bm">必吃</span><span class="b ba">強烈推薦此店</span><span class="b bd">約1.5小時</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="db1">
+          <div class="dr"><span class="dl">推薦店</span><span class="dv"><strong>기장명품대게 Premium Crab Busan</strong></span></div>
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=기장명품대게+Gijang+Busan" target="_blank">機張名品大게 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">市場</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Gijang+Market+crab+Busan" target="_blank">機張市場（대게거리）→ Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 51-724-0977 · 09:30–21:00</span></div>
+          <div class="bo"><div class="t">機張市場必食清單</div><ul class="x">
+            <li><strong>대게 雪蟹（長腳蟹）</strong> — 清蒸最鮮甜，1kg/人 約₩60,000–80,000</li>
+            <li><strong>게살볶음밥 蟹肉炒飯</strong> — 用蟹殼蟹膏炒，靈魂收尾必點</li>
+            <li><strong>전복찜 清蒸鮑魚</strong> — 現買現蒸配醬油</li>
+            <li><strong>멍게 海鞘</strong> — 韓國獨特海鮮，勇者必試</li>
+          </ul></div>
+          <div class="bg"><div class="t">為何推薦此店</div><div class="x">評分4.7，老闆能說英語，價格透明，常附贈鮑魚及扇貝，適合家庭用餐。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">14:00</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cb2" onclick="tg('b2')">
+        <div class="ctop"><div class="cb"><div class="ct">釜山樂天世界 Lotte World Busan</div><div class="cs">東釜山廣光路42 · ⭐ 4.1 · 區內短途</div><div class="bdgs"><span class="b bv">釜山通行證 A-2</span><span class="b bd">約3.5小時</span><span class="b bh">10:00–19:00（週末至20:00）</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="db2">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Lotte+World+Adventure+Busan+Gijang" target="_blank">釜山樂天世界 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">用 VBP A-2 免費入場。與 Skyline Luge 及 Lotte Outlet 步行相連。15:00前人龍較短。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">17:30</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="cb3" onclick="tg('b3')">
+        <div class="ctop"><div class="cb"><div class="ct">樂天 Outlet 東釜山店</div><div class="cs">機張海岸路147 · ⭐ 4.2 · 與樂天世界相連</div><div class="bdgs"><span class="b bd">約1.5小時</span><span class="b bh">10:30–21:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="db3">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Lotte+Premium+Outlets+DongBusan+Gijang" target="_blank">樂天 Outlet 東釜山 → Google Maps</a></span></div>
+          <div class="bo"><div class="t">🧥 必去：The North Face Outlet</div><ul class="x">
+            <li>樂天東釜山 Premium Outlet 內設有 <strong>The North Face</strong> 專門店，是韓國最大 North Face Outlet 分店之一</li>
+            <li>Outlet 價格比正價店低 <strong>30–50%</strong>，並可享額外外國旅客折扣（出示護照）</li>
+            <li>必看：Nuptse 700 羽絨背心、Himalayan 羽絨外套、Futurelight 雨衣系列 — 英國天氣最實用！</li>
+            <li>韓國 North Face 版型與香港 / 英國略有不同，建議試穿後再購買</li>
+            <li>購物滿額可申請 <strong>Tax Refund</strong> 退稅，在機場出發前辦理</li>
+          </ul></div>
+          <div class="bg"><div class="t">其他推薦品牌</div><div class="x">Nike Factory Store · Adidas Outlet · MLB（棒球帽）· Discovery Channel Expedition（韓國獨有戶外品牌）· 童裝區有 Polo Ralph Lauren Outlet</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">20:00</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cb4" onclick="tg('b4')">
+        <div class="ctop"><div class="cb"><div class="ct">晚餐 — 朝鮮의韓牛 南浦店（불꽃쇼 火焰秀）</div><div class="cs">富平2街12 · ⭐ 4.2 · 計程車從機張約30分鐘</div><div class="bdgs"><span class="b bt">✅ CatchTable已訂位</span><span class="b bm">必吃</span><span class="b bd">約2小時</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="db4">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=조선의한우+Nampo+Busan" target="_blank">朝鮮의韓牛 南浦店 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 51-245-0092</span></div>
+          <div class="bb"><div class="t">✅ 已用 CatchTable 訂位</div><div class="x">불꽃쇼 자리（火焰秀座位）已透過 CatchTable App 預約好，不需再另行致電，準時到達即可。</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DAY 3 ===== -->
+<div class="dp" id="day-3">
+  <div class="dh">
+    <h2>第三天 — 青沙浦＆汗蒸幕</h2>
+    <div class="date">星期日，09/08/2026</div>
+    <div class="sc"><span>📍 青沙浦→尾浦→海雲台EMART→Centum City</span><span>🎫 憑VBP B-1換海岸列車回尾浦</span></div>
+  </div>
+  <div class="travelt">🚕 <strong>酒店 → 青沙浦：</strong>的士直達約1小時，09:30抵達（膠囊火車已滿，改行車前往）<br>🚋 <strong>回程：</strong>11:30於青沙浦站憑 VBP B-1 換乘海岸列車回尾浦，車程約10–15分鐘，再到尾浦家午餐</div>
+
+  <div class="bkfast">
+    <div class="bft">🍳 第三天早餐 — 08:30時間較緊，建議簡單快速版本</div>
+    <div class="bkfast-items">
+      <div class="bfi">
+        <div class="bn">① 酒店早餐 / 附近便利店（推薦）</div>
+        <div class="bs">酒店早餐或附近 GS25、CU 買飯糰咖啡帶走，車上吃最省時，配合09:30準時抵達青沙浦。</div>
+      </div>
+      <div class="bfi">
+        <div class="bn">② Who's Who MUMU Bakery ⭐ 4.9（1,407則）</div>
+        <div class="bs">達摩地路62街3號B1 · 海雲台 · 09:00–19:00 每日<br>
+        今天車程較長時間緊，未必來得及，建議留待其他早上較悠閒的一天再去。<br>
+        <a href="https://maps.app.goo.gl/Hyz7nXbQSag27eGy7" target="_blank">→ Google Maps</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl">
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">08:30</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc0" onclick="tg('c0')">
+        <div class="ctop"><div class="cb"><div class="ct">早餐（簡單快速版）＋的士直達青沙浦</div><div class="cs">酒店/附近便利店 → 的士直達青沙浦 · 車程約1小時</div><div class="bdgs"><span class="b bt">時間較緊</span><span class="b bd">約1小時（含車程）</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc0">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Cheongsapo+Station+Blue+Line+Park+Busan" target="_blank">青沙浦 → Google Maps</a></span></div>
+          <div class="bb"><div class="t">行程變更</div><ul class="x"><li>天空膠囊火車（尾浦→青沙浦）已滿額，改為的士直接前往青沙浦</li><li>08:30簡單早餐（酒店/便利店）→ 的士出發 → 09:30準時抵達</li><li>建議用 Kakao T 叫車，車程較長路上可補眠或吃早餐</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">09:30</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc1" onclick="tg('c1')">
+        <div class="ctop"><div class="cb"><div class="ct">灌籃高手平交道＋雙胞胎燈塔＋青沙浦漫遊</div><div class="cs">青沙浦 Cheongsapo · ⭐ 4.5 · 至11:30</div><div class="bdgs"><span class="b bm">約2小時</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc1">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Cheongsapo+Station+Blue+Line+Park+Busan" target="_blank">青沙浦站（灌籃高手平交道）→ Google Maps</a></span></div>
+          <div class="bg"><div class="t">打卡攻略</div><div class="x">下車後步行約5分鐘 → 著名海景平交道（與灌籃高手動畫開場幾乎一模一樣）。拍完照逛雙胞胎燈塔（紅白燈塔中間即是安全水道）。</div></div>
+          <div class="bb"><div class="t">⚠️ 抵達即換票</div><ul class="x"><li>09:30一到青沙浦站，先去售票處憑 VBP B-1 換乘 <strong>11:30</strong> 班次的海岸列車車票（現場票視乎當時餘位，越早換越有保障）</li><li>換好票後才開始逛，玩到11:20左右回到月台候車（開車前10分鐘須在月台等候）</li><li>換票後時間不可更改，如需改時間要先取消再重買（可能有手續費），確定11:30可行才換</li></ul></div>
+          <div class="bo"><div class="t">2小時還可以順道逛（挑2–3個剛好）</div><ul class="x">
+            <li><strong>청사포 다릿돌전망대 青沙浦橋石展望台</strong> — 191米U形海上棧道，末端玻璃地板可看到浪花，免費入場，09:00–18:00，現場提供鞋套<br><a href="https://www.google.com/maps/search/?api=1&query=청사포다릿돌전망대+Cheongsapo+Daritdol+Observatory+Busan" target="_blank">→ Google Maps</a></li>
+            <li><strong>청사포 카페거리 青沙浦咖啡街</strong> — 沿海岸一整排海景咖啡廳，坐下來喝杯咖啡看海，其中「청사포역」是火車站主題咖啡廳，很有打卡感<br><a href="https://www.google.com/maps/search/?api=1&query=청사포역+카페+Cheongsapo+Cafe+Street+Busan" target="_blank">→ Google Maps</a></li>
+            <li><strong>청사포 벽화마을 青沙浦壁畫村</strong> — 鐵路旁小巷弄的壁畫，適合親子邊走邊尋寶拍照<br><a href="https://www.google.com/maps/search/?api=1&query=청사포+벽화마을+Cheongsapo+Mural+Village+Busan" target="_blank">→ Google Maps</a></li>
+            <li><strong>청사포 고양이마을 青沙浦貓村</strong>（喜歡貓的話）— 從小店「고양이발자국」開始的巷弄，不時能遇到親人的街貓<br><a href="https://www.google.com/maps/search/?api=1&query=고양이발자국+청사포+Cheongsapo+Busan" target="_blank">→ Google Maps</a></li>
+          </ul></div>
+          <div class="bb"><div class="t">提示</div><ul class="x"><li>2小時足夠悠閒安排平交道打卡＋展望台＋咖啡歇腳，不用全部都走，11:30回到青沙浦站準備換票搭車</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">11:30</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc0x" onclick="tg('c0x')">
+        <div class="ctop"><div class="cb"><div class="ct">憑 VBP B-1 換乘海岸列車 回尾浦</div><div class="cs">青沙浦站 → 尾浦站 · 免費（VBP B-1）· 車程約10–15分鐘</div><div class="bdgs"><span class="b bv">VBP B-1</span><span class="b bd">約15分鐘</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc0x">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Haeundae+Blue+Line+Park+Mipo+Station+Busan" target="_blank">尾浦站 → Google Maps</a></span></div>
+          <div class="bb"><div class="t">乘車</div><ul class="x"><li>車票已在09:30抵達時換好（11:30班次），11:20左右回到月台候車即可</li><li>下層列車，非指定座位，有位就坐，車程約10–15分鐘直達尾浦站</li></ul></div>
+          <div class="bg"><div class="t">銜接</div><div class="x">尾浦站步行或的士數分鐘即達尾浦家醬油蟹餐廳，12:30準時赴午餐。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">12:30</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc2" onclick="tg('c2')">
+        <div class="ctop"><div class="cb"><div class="ct">午餐 — 尾浦家 醬油蟹（미포집 해운대본점）</div><div class="cs">간장게장 生醃醬油蟹 · 해운대구 달맞이길62번길 3 · 尾浦海邊步行約2分鐘</div><div class="bdgs"><span class="b bw">⚠️ CatchTable預約</span><span class="b bm">必吃</span><span class="b bd">約1.5小時</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc2">
+          <div class="dr"><span class="dl">預約</span><span class="dv"><a href="https://app.catchtable.co.kr" target="_blank">CatchTable Global App →</a></span></div>
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=미포집+해운대본점+달맞이길62번길+3+Busan" target="_blank">尾浦家（미포집 해운대본점）→ Google Maps</a></span></div>
+          <div class="dr"><span class="dl">地址</span><span class="dv">부산광역시 해운대구 달맞이길62번길 3</span></div>
+          <div class="bg"><div class="t">提示</div><div class="x">避開12:00–13:00高峰，於12:30或13:15後前往候位。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">14:00</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc4b" onclick="tg('c4b')">
+        <div class="ctop"><div class="cb"><div class="ct">EMART 海雲台店 — 買 Hulken 摺疊購物拉車袋</div><div class="cs">海雲台 · 計程車從尾浦約10分鐘</div><div class="bdgs"><span class="b bd">約20–30分鐘</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc4b">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=이마트+해운대점+Busan" target="_blank">EMART 海雲台店 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">順道採購</div><div class="x">在 EMART 生活雜貨區找摺疊購物拉車袋（Hulken Bag 款式），輕便耐用，方便手信及日用品分裝，回程行李更好收納。買完再打車去 SPA LAND。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">14:45</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc3" onclick="tg('c3')">
+        <div class="ctop"><div class="cb"><div class="ct">SPA LAND 汗蒸幕</div><div class="cs">Centum南大路35 · ⭐ 4.5 · 計程車從EMART約15分鐘</div><div class="bdgs"><span class="b bt">自費</span><span class="b bd">約3小時</span><span class="b bh">09:00–22:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc3">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Spa+Land+Shinsegae+Centum+City+Busan" target="_blank">SPA LAND → Google Maps</a></span></div>
+          <div class="bg"><div class="t">備注</div><div class="x">自費（非VBP），約₩15,000–22,000。帶備替換內衣。小朋友可在公共區活動，需成人陪同。館內必喝甜米露 식혜 (Sikhye)。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">17:30</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc4" onclick="tg('c4')">
+        <div class="ctop"><div class="cb"><div class="ct">新世界百貨 Centum City</div><div class="cs">⭐ 4.6 · 全球最大百貨公司 · SPA LAND 同棟</div><div class="bdgs"><span class="b bd">約1.5小時</span><span class="b bh">10:30–20:00（五六至20:30）</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc4">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Shinsegae+Department+Store+Centum+City+Busan" target="_blank">新世界百貨 → Google Maps</a></span></div>
+          <div class="bam"><div class="t">🌟 入場第一件事：3樓服務台領取 Global Membership Card</div><div class="x">
+            憑<strong>護照</strong>到 <strong>3樓外國旅客服務台</strong> 免費申請 <strong>Global Membership Card</strong><br>
+            · 可換領 <strong>免費飲品</strong>（通常是咖啡或果汁）<br>
+            · 享有當日購物 <strong>3–5% 折扣</strong>（視乎購物類別）<br>
+            · 配合 Tax Refund 退稅，購物更划算<br>
+            ⏰ 服務台營業時間與百貨公司相同，建議一入場即辦理，不要遲了忘記！
+          </div></div>
+          <div class="bg"><div class="t">其他貼士</div><div class="x">地下有溜冰場，高層有美食廣場。韓國護膚品和美妝在 Shinsegae 品牌齊全。注意 <strong>20:00</strong> 關門（五六日 20:30）！</div></div>
+          <div class="bte"><div class="t">🛍️ 順道去：Muji 無印良品 — 買冷麵湯底帶回英國！</div><div class="x">
+            新世界百貨 Centum City 內設有 <strong>Muji（無印良品）</strong>分店。<br><br>
+            必買：<strong>냉면 스프 冷麵湯底包</strong>（韓國 Muji 獨家版本）<br>
+            · 水冷麵湯底（수냉면 육수） — 清爽冰涼風味，英國夏天可以在家重現釜山冷麵<br>
+            · 辣拌冷麵醬（비빔냉면 소스） — 甜辣口味，開袋即用<br>
+            · 份量輕，適合放入行李帶回；真空包裝，可托運 ✅<br><br>
+            同場加映：韓國 Muji 其他必買<br>
+            · 即食炒飯包 · 各款拉麵湯底 · 韓式調味包 · 便攜旅行用品
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">19:30</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cc5" onclick="tg('c5')">
+        <div class="ctop"><div class="cb"><div class="ct">晚餐 — 海雲台傳統市場</div><div class="cs">⭐ 4.2 · 計程車從Centum City約10分鐘</div><div class="bdgs"><span class="b bm">必試</span><span class="b bd">約1小時</span><span class="b bh">09:00–22:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dc5">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Haeundae+Traditional+Market+Busan" target="_blank">海雲台傳統市場 → Google Maps</a></span></div>
+          <div class="bo"><div class="t">必吃</div><ul class="x"><li>해물파전 海鮮煎餅 — 找鳳子家（봉자네）攤位</li><li>어묵 魚板串 — 釜山招牌街頭小吃</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DAY 4 ===== -->
+<div class="dp" id="day-4">
+  <div class="dh">
+    <h2>第四天 — 影島文化村、纜車與購物</h2>
+    <div class="date">星期一，10/08/2026</div>
+    <div class="sc"><span>📍 南浦→影島→札嘎其→松島→南浦</span><span>🛍️ 今天購買棉被！</span></div>
+  </div>
+  <div class="travelt">🚕 <strong>酒店→影島白淺灘：</strong>計程車約15分鐘 ≈ ₩10,000–13,000<br>🚶 <strong>白淺灘→ARTE MUSEUM：</strong>步行約8分鐘<br>🚶 <strong>ARTE MUSEUM→P.ARK：</strong>步行約5分鐘<br>🚕 <strong>P.ARK→札嘎其市場：</strong>計程車約15分鐘<br>🚶 <strong>下午行程：</strong>步行或短途計程車可達南浦洞各景點</div>
+  <div class="nb">
+    <div class="nt">✈️ 今晚記得：UO675（回程）網上辦理登機手續！</div>
+    <div class="nx">登入 <strong>hkexpress.com</strong> → 辦理 UO675（回程，11/08 · 14:20起飛）→ 免費選座 → 截圖備用。<br>⚠️ 明天最遲 <strong>11:00</strong> 離開酒店，計程車約45分鐘到機場。</div>
+  </div>
+  <div class="tl">
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">09:00</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd0" onclick="tg('d0')">
+        <div class="ctop"><div class="cb"><div class="ct">白淺灘文化村散步</div><div class="cs">影島 · ⭐ 4.4 · 計程車約15分鐘</div><div class="bdgs"><span class="b bd">約30–40分鐘</span><span class="b bh">24小時開放</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd0">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Huinnyeoul+Culture+Village+Yeongdo+Busan" target="_blank">白淺灘文化村 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">遊覽攻略</div><div class="x">昔日漁村改建的藝術空間，早晨清靜怡人，海景小巷適合拍照。輕鬆散步30–40分鐘，再前往 ARTE MUSEUM。今天不趕時間，可以慢慢逛！</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">10:00</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd0b" onclick="tg('d0b')">
+        <div class="ctop"><div class="cb"><div class="ct">ARTE MUSEUM 沉浸式光影美術館</div><div class="cs">影島海洋路247番街29 · 全球最大分館</div><div class="bdgs"><span class="b bv">釜山通行證 B-3</span><span class="b bd">約1–1.5小時</span><span class="b bh">10:00–20:00（最後入場19:00）</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd0b">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=ARTE+MUSEUM+Busan+Yeongdo" target="_blank">ARTE MUSEUM 影島 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">用 VBP B-3 免費兌換入場。全球規模最大的沉浸式媒體光影藝術館，19個展區有16個是釜山限定作品，館內光線較暗，適合喜歡拍照的話可以慢慢逛。逛完步行約5分鐘到 P.ARK 歇腳。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">11:30</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd0c" onclick="tg('d0c')">
+        <div class="ctop"><div class="cb"><div class="ct">P.ARK 咖啡廳 · 海崖景觀（Coffee Break）</div><div class="cs">海洋路195街180 · ⭐ 4.2 · 步行約5分鐘</div><div class="bdgs"><span class="b bd">約30分鐘</span><span class="b bh">10:00–23:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd0c">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=P.ARK+cafe+Yeongdo+Busan" target="_blank">P.ARK 影島 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 70-4628-0010</span></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">影島海崖360度壯觀海景，設有 Miffy 精品店及 Crayon Shin-chan 兒童區。坐下歇腳喝杯咖啡，12:00左右起步去午餐。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">12:00</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd1" onclick="tg('d1')">
+        <div class="ctop"><div class="cb"><div class="ct">午餐 — 札嘎其市場海鮮</div><div class="cs">札嘎其海岸路52 · ⭐ 4.0 · 計程車約15分鐘</div><div class="bdgs"><span class="b bm">必體驗</span><span class="b bd">約1.5小時</span><span class="b bh">09:00–21:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd1">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Jagalchi+Fish+Market+Busan" target="_blank">札嘎其市場 → Google Maps</a></span></div>
+          <div class="bb"><div class="t">用餐方式</div><ul class="x"><li>1樓：挑選活海鮮（可議價）</li><li>2樓：代客烹調，加工費約₩5,000–10,000/人</li></ul></div>
+          <div class="bg"><div class="t">🐟 隔壁 Sindonga Fish Market 신동아수산 也可以</div><div class="x">就在札嘎其市場旁（步行1分鐘），中區自갈치路42號 · +82 51-247-6411 · 10:00–21:30。同樣是先揀海鮮再上樓加工，部分店舖明碼標價，議價壓力較細，適合怕講價的話可以來這邊。<br><a href="https://www.google.com/maps/search/?api=1&query=신동아수산물종합시장+Jagalchi+Busan" target="_blank">→ Sindonga Fish Market Google Maps</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">14:00</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd2" onclick="tg('d2')">
+        <div class="ctop"><div class="cb"><div class="ct">松島海上纜車</div><div class="cs">松島海邊路171 · ⭐ 4.3 · 計程車約10分鐘</div><div class="bdgs"><span class="b bv">釜山通行證 B-2</span><span class="b bd">約1.5小時</span><span class="b bh">09:00–21:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd2">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Songdo+Beach+Cable+Car+Busan" target="_blank">松島海上纜車 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">用 VBP B-2 免費乘坐。可升級玻璃底艙（多₩7,000），17:00–18:00日落景色最美。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">15:30</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd2b" onclick="tg('d2b')">
+        <div class="ctop"><div class="cb"><div class="ct">松島景點推薦 — 구름산책로 雲端散步路 ＋ 용궁구름다리</div><div class="cs">松島海水浴場 · 免費 · 纜車站步行可達</div><div class="bdgs"><span class="b bt">全部免費</span><span class="b bd">約30–40分鐘</span><span class="b bh">06:00–23:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd2b">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=송도구름산책로+Songdo+Cloud+Trail+Busan" target="_blank">松島雲端散步路 → Google Maps</a></span></div>
+          <div class="bo"><div class="t">纜車以外，順道打卡的兩個景點</div><ul class="x">
+            <li><strong>송도구름산책로 雲端散步路</strong> — 365米海上木橋，部分路段透明玻璃地板，可直接望到海浪。與纜車站相連，纜車落站後可直接走過去</li>
+            <li><strong>송도용궁구름다리 龍宮雲橋</strong> — 松島海水浴場西側，2020年新建的觀景吊橋，適合順道影相</li>
+          </ul></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">兩個景點都免費、不用VBP，纜車坐完直接步行過去，安排30–40分鐘剛好，之後先去李家辣炒年糕醫肚，再去買棉被。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">15:45</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd2c" onclick="tg('d2c')">
+        <div class="ctop"><div class="cb"><div class="ct">下午茶小食 — 李家辣炒年糕 이가네떡볶이</div><div class="cs">富平1街48 · ⭐ 3.8 · 國際市場棉被街附近</div><div class="bdgs"><span class="b bm">必試</span><span class="b bh">10:00–17:00（周日休息）</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd2c">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=이가네떡볶이+Bupyeong+Nampo+Busan" target="_blank">李家辣炒年糕 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 51-245-0413 · 10:00–17:00（周日休息）</span></div>
+          <div class="bo"><div class="t">必點推薦</div><ul class="x"><li>떡볶이 辣炒年糕 — 醬汁甜辣，年糕Q彈有嚼勁</li><li>튀김 炸物 — 可蘸辣炒年糕醬汁一起吃</li><li>어묵 魚板 — 配熱湯免費喝</li></ul></div>
+          <div class="bam"><div class="t">⏰ 留意17:00關門</div><div class="x">松島行程完結後，順路先到李家辣炒年糕醫肚，再走去國際市場棉被街比價買棉被。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">16:00</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd3" onclick="tg('d3')">
+        <div class="ctop"><div class="cb"><div class="ct">比價棉被 — 大明寢具 ＆ 京信寢具（返酒店放下）</div><div class="cs">國際市場棉被街 · 計程車約10分鐘，再步行回酒店</div><div class="bdgs"><span class="b bt">現金 約₩200,000 ≈ HK$1,060</span><span class="b bd">約45分鐘</span><span class="b bh">09:00–20:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd3">
+          <div class="dr"><span class="dl">地圖①</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=대명침구+Gukjesijang+Busan" target="_blank">大明寢具 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">地圖②</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=경신침구+Gukjesijang+Busan" target="_blank">京信寢具 → Google Maps</a></span></div>
+          <div class="bb"><div class="t">今天改為先比價</div><div class="x">兩間店都在國際市場棉被街，步行數分鐘。先去<strong>大明寢具</strong>同<strong>京信寢具</strong>兩間都問價、摸質料，兩間比較後再決定在哪間買。京信寢具18:00關門，要留意時間。</div></div>
+          <div class="bg"><div class="t">策略</div><div class="x">買完<strong>步行回酒店放下棉被</strong>，再輕身繼續購物。BIFF廣場黑糖餅（흑설탕호떡）就在附近，順道吃！<br>明天早上裝入大行李箱再去機場。</div></div>
+          <div class="bam"><div class="t">棉被質料提示</div><div class="x">詳細質料分析及韓文關鍵字請看「🛏️ 棉被攻略」分頁。<strong>推薦首選：모달 세미 마이크로</strong>（Modal Semi-Microfiber）。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">17:00</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd5" onclick="tg('d5')">
+        <div class="ctop"><div class="cb"><div class="ct">南浦地下街購物 → 樂天百貨＋樂天超市買手信</div><div class="cs">步行即達 · 百貨及地下街 20:00關門</div><div class="bdgs"><span class="b bd">約3小時</span><span class="b bh">百貨及地下街至20:00</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd5">
+          <div class="dr"><span class="dl">南浦地下街</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Nampo+Underground+Shopping+Center+Busan" target="_blank">南浦地下街 → Google Maps</a> · 10:00–20:00</span></div>
+          <div class="dr"><span class="dl">樂天百貨</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Lotte+Department+Store+Gwangbok+Busan" target="_blank">樂天百貨光復店 → Google Maps</a></span></div>
+          <div class="bo"><div class="t">樂天超市手信必買清單</div><ul class="x">
+            <li>신라면 辛拉麵（多口味禮盒裝）— 英國買不到正宗版</li>
+            <li>고추장 辣椒醬 / 된장 大醬 — 韓式料理必備</li>
+            <li>김 烤海苔（薄鹽芝麻口味）— 好吃又輕便</li>
+            <li>홍삼 紅蔘糖果 / 홍삼스틱 紅蔘飲料包 — 高質手信</li>
+            <li>허니버터칩 蜂蜜牛油薯片 — 紀念品必買</li>
+            <li>한과 韓式傳統糕點 — 精美禮盒裝適合送禮</li>
+          </ul></div>
+          <div class="bg"><div class="t">策略</div><div class="x">先逛南浦地下街（本地服裝配飾），再去樂天百貨（美妝護膚），最後樂天超市補購食品手信。注意20:00關門！超市可能比百貨公司略晚。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">19:30</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd4" onclick="tg('d4')">
+        <div class="ctop"><div class="cb"><div class="ct">晚餐 — 密陽血腸豬肉湯飯（富平店）</div><div class="cs">光復路6街 · ⭐ 4.1 · 24小時 · 步行5分鐘</div><div class="bdgs"><span class="b bm">釜山特色</span><span class="b bd">約1小時</span><span class="b bh">24小時</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd4">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=밀양순대돼지국밥+Bupyeong+Busan" target="_blank">密陽血腸豬肉湯飯 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">小提示</div><div class="x">돼지국밥 豬肉湯飯是釜山標誌性美食，湯底奶白濃郁。加點血腸（순대）即為密陽特色全餐。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">21:00</div><div class="tdw"><div class="tdot ds"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd6" onclick="tg('d6')">
+        <div class="ctop"><div class="cb"><div class="ct">光復路時尚街 — 補貨化妝品 / 潮流服飾</div><div class="cs">Gwangbok-ro Fashion Street · ⭐ 4.3 · 步行5分鐘</div><div class="bdgs"><span class="b bd">約1小時</span><span class="b bh">大部分店舖21:00–22:00關門</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd6">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Gwangbok+Fashion+Street+Busan" target="_blank">光復路時尚街 → Google Maps</a></span></div>
+          <div class="bg"><div class="t">最後補貨機會！</div><div class="x">最後機會補購韓國美妝（Olive Young、Etude）和潮流服飾。<strong>今晚記得完成 UO675（回程）網上登機手續！</strong></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">消夜</div><div class="tdw"><div class="tdot df"></div><div class="tline"></div></div></div>
+      <div class="card" id="cd8" onclick="tg('d8')">
+        <div class="ctop"><div class="cb"><div class="ct">消夜 — 巨人炸雞 거인통닭</div><div class="cs">中區路47街34 · ⭐ 3.8（940則）· 步行約8分鐘</div><div class="bdgs"><span class="b bm">釜山傳統名物</span><span class="b ba">只賣一款炸雞</span><span class="b bd">2–3人分享</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="dd8">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=거인통닭+Geoin+Tongdak+Nampo+Busan" target="_blank">巨人炸雞 거인통닭 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">電話</span><span class="dv">+82 51-246-6079</span></div>
+          <div class="bo"><div class="t">必點推薦</div><ul class="x">
+            <li><strong>거인통닭 巨人炸雞</strong> — 全店只賣一款！現點現炸，外皮極脆有鑊氣，肉汁豐富，是韓國傳統炸雞的最純粹代表</li>
+            <li><strong>양념소스 辣醬</strong> — 另收₩1,000，甜辣醬汁配炸雞絕配，強烈建議加點</li>
+            <li><strong>깍두기 醃蘿蔔</strong> — 免費附贈，清爽解膩，必吃！</li>
+            <li><strong>맥주 冰啤酒</strong> — 炸雞＋啤酒（치맥 Chimaek）是韓國國民組合，旅程最後一晚的最完美收尾</li>
+          </ul></div>
+          <div class="bb"><div class="t">食客須知</div><ul class="x">
+            <li>全店<strong>只賣一款</strong>炸雞，可選整隻或半隻，菜單極簡單</li>
+            <li>現點現炸，非繁忙時等約10–15分鐘，份量大，2–3人分享一整隻剛好</li>
+            <li>繁忙時需排隊，建議21:30後人流較少</li>
+            <li>可外帶回酒店享用，買完順路回家</li>
+          </ul></div>
+          <div class="bg"><div class="t">為何值得去</div><div class="x">巨人炸雞是釜山富平市場一帶的老字號，不加花巧，只做最純粹的韓式傳統炸雞。有食客形容為「吃過最好的炸雞，兩個月後還在念念不忘」。旅程最後一晚消夜，配啤酒完美收尾第四天！</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DAY 5 ===== -->
+<div class="dp" id="day-5">
+  <div class="dh">
+    <h2>第五天 — 出發早晨</h2>
+    <div class="date">星期二，11/08/2026</div>
+    <div class="sc"><span>✈️ UO675（回程）· 14:20起飛</span><span>⏰ 11:00離開酒店去機場</span><span>🛍️ 酒店附近最後衝刺購物</span></div>
+  </div>
+  <div class="travelt">
+    🚶 <strong>整個早上：</strong>酒店步行範圍內購物（國際市場 · BIFF廣場 · 南浦地下街 · 光復路）<br>
+    🚕 <strong>酒店→金海機場：</strong>計程車約40分鐘<br>
+    <span style="font-size:12px;">09:00起步行購物 → 10:30返酒店取行李 → 11:00出發去機場 → 40分鐘 → 11:40到機場 → 辦理手續100分鐘 → 14:20起飛 ✅</span>
+  </div>
+  <div class="na">
+    <div class="nt">📋 今早出發前確認清單</div>
+    <div class="nx">□ 網上登機手續昨晚已完成 ✅<br>□ 棉被今早第一件事：真空壓縮後裝入 <strong>32kg 行李箱</strong>（回程額度最大）<br>□ 行李打包完畢，Check Out時寄存前台，購物後取回<br>□ 護照 · 登機證截圖 · 旅遊保險已備好<br>□ <strong>回程行李限額：32kg×2 + 20kg×2 + 手提7kg×2</strong><br>
+      &nbsp;&nbsp;&nbsp;↳ 磅重確認所有行李不超重，手提行李連隨身物品勿超過7kg<br>□ <strong>10:30 最遲返回酒店</strong> → 取行李 → 11:00 出發去機場</div>
+  </div>
+  <div class="tl">
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">08:30</div><div class="tdw"><div class="tdot dt"></div><div class="tline"></div></div></div>
+      <div class="card" id="ce0x" onclick="tg('e0x')">
+        <div class="ctop"><div class="cb"><div class="ct">酒店 Check Out ＋ 行李寄存</div><div class="cs">Poolvilla Gaon · 出發前完成所有準備</div><div class="bdgs"><span class="b bd">約30分鐘</span><span class="b bw">棉被今早裝箱！</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="de0x">
+          <div class="bg"><div class="t">Check Out 流程</div><div class="x">
+            1. 今早第一件事：把真空棉被裝入大行李箱<br>
+            2. 完成 Check Out（退房）<br>
+            3. 把行李寄存在酒店前台（짐 맡겨도 될까요？= 可以寄存行李嗎？），10:30回來取<br>
+            4. 輕身出發最後購物！
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">09:00</div><div class="tdw"><div class="tdot da"></div><div class="tline"></div></div></div>
+      <div class="card" id="ce0s" onclick="tg('e0s')">
+        <div class="ctop"><div class="cb"><div class="ct">最後衝刺！酒店附近購物</div><div class="cs">國際市場 · BIFF廣場 · 南浦地下街 · 光復路 · 步行即達</div><div class="bdgs"><span class="b bt">最後機會</span><span class="b bd">約1.5小時</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="de0s">
+          <div class="bg"><div class="t">早晨購物路線</div><div class="x">全部步行範圍內，不用坐車！補購化妝品（Olive Young、Etude）、手信零食、韓服飾配件。國際市場逛完手信，順道 BIFF廣場買個黑糖餅（흑설탕호떡）當早餐。<strong>10:30準時折返酒店</strong>，時間有限別走太遠。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">10:30</div><div class="tdw"><div class="tdot dt"></div><div class="tline"></div></div></div>
+      <div class="card" id="ce1b" onclick="tg('e1b')">
+        <div class="ctop"><div class="cb"><div class="ct">購物 → 返酒店取行李</div><div class="cs">步行返回 · 最遲10:30到酒店</div><div class="bdgs"><span class="b bw">10:30準時折返！</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="de1b">
+          <div class="bg"><div class="t">取行李提示</div><div class="x">取回寄存行李，迅速整理，確認棉被、護照、登機證齊全，最後檢查有無遺漏戰利品。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tleft"><div class="ttime">11:00</div><div class="tdw"><div class="tdot dt"></div><div class="tline"></div></div></div>
+      <div class="card" id="ce2" onclick="tg('e2')">
+        <div class="ctop"><div class="cb"><div class="ct">酒店出發 → 金海機場</div><div class="cs">計程車約40分鐘 · 11:40到機場 · 14:20起飛</div><div class="bdgs"><span class="b bw">11:00準時出發！</span></div></div><div class="chev">▾</div></div>
+        <div class="det" id="de2">
+          <div class="dr"><span class="dl">地圖</span><span class="dv"><a href="https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport+Busan" target="_blank">金海國際機場 → Google Maps</a></span></div>
+          <div class="dr"><span class="dl">航班</span><span class="dv">UO675（回程）· 11/08/2026 · 14:20起飛</span></div>
+          <div class="bg"><div class="t">離境計劃</div><div class="x">叫 Kakao Taxi，行程中告訴司機「김해공항 가주세요」（去金海機場）。到機場後先辦 Check-in，再到稅務退還（Tax Refund）。剩餘韓圜可在出境後換回港幣。帶著美好回憶，安全回家！</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+</div>
+
+<!-- ===================== EXPENSE ===================== -->
+<div class="exp-app" id="expApp" style="display:none">
+<div class="ehdr">
+  <h1>釜山旅費記錄 💰</h1>
+  <p>07/08 – 11/08/2026 · 4人同行</p>
+  <div class="rate-bar">
+    <label>匯率 HK$1 =</label>
+    <input class="rate-input" type="number" id="rate" value="187" min="1" max="999" oninput="refreshAll()">
+    <span>韓圜 ₩</span>
+  </div>
+</div>
+
+<div class="summary" id="grand-summary">
+  <div class="sum-item">
+    <div class="sum-label">總支出 ₩</div>
+    <div class="sum-val krw" id="grand-krw">0</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-label">總支出 HK$</div>
+    <div class="sum-val hkd" id="grand-hkd">0</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-label">總筆數</div>
+    <div class="sum-val count" id="grand-count">0</div>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="etabs">
+    <button class="tab-btn active" onclick="switchDay('overview')">📊 總覽</button>
+    <button class="tab-btn" onclick="switchDay('d1')">第一天 07/08</button>
+    <button class="tab-btn" onclick="switchDay('d2')">第二天 08/08</button>
+    <button class="tab-btn" onclick="switchDay('d3')">第三天 09/08</button>
+    <button class="tab-btn" onclick="switchDay('d4')">第四天 10/08</button>
+    <button class="tab-btn" onclick="switchDay('d5')">第五天 11/08</button>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="day-panel active" id="panel-overview">
+  <div class="overview-grid" id="ov-grid"></div>
+  <div class="cat-breakdown">
+    <h3>📂 類別分析</h3>
+    <div id="cat-breakdown-rows"></div>
+  </div>
+</div>
+
+<!-- DAY PANELS -->
+<div class="day-panel" id="panel-d1" data-day="d1" data-label="第一天 07/08 (週四)"></div>
+<div class="day-panel" id="panel-d2" data-day="d2" data-label="第二天 08/08 (週五)"></div>
+<div class="day-panel" id="panel-d3" data-day="d3" data-label="第三天 09/08 (週六)"></div>
+<div class="day-panel" id="panel-d4" data-day="d4" data-label="第四天 10/08 (週日)"></div>
+<div class="day-panel" id="panel-d5" data-day="d5" data-label="第五天 11/08 (週一)"></div>
+
+<div class="export-bar">
+  <button class="export-btn excel" onclick="exportExcel()">📥 匯出 Excel</button>
+  <button class="export-btn clear" onclick="clearConfirm()">🗑️ 清除全部</button>
+</div>
+</div>
+
+<!-- ===================== CHECKLIST ===================== -->
+<div class="checklist-app" id="checklistApp" style="display:none;padding-bottom:80px;">
+<div id="day-0">
+  <div class="dh">
+    <h2>出發前準備清單</h2>
+    <div class="date">UO674（去程） · UO675（回程） · 07/08 – 11/08/2026 · 4人同行</div>
+    <div class="sc"><span>📋 按時間順序逐項完成</span><span>✈️ 出發日：07/08/2026（星期五）</span></div>
+  </div>
+  <div class="tips" style="padding-top:14px;">
+
+    <!-- 2 WEEKS BEFORE -->
+    <div class="tc">
+      <h3>🗓️ 出發前2週或以上</h3>
+      <div class="tb">
+
+        <!-- CAPSULE TRAIN -->
+        <div class="wr">
+          <div class="wdot" style="background:var(--purple)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--purple);text-decoration:line-through;">🚂 搶購天空膠囊火車票（已額滿，改的士）</div>
+            <div class="wx">
+              <strong>⚠️ 已滿額，第三天改為的士直達青沙浦，此項目毋須再處理。</strong><br>
+              官網：<a href="https://www.bluelinepark.com" target="_blank">bluelinepark.com →</a><br>
+              訂票教學：<a href="https://www.funliday.com/posts/busan-haeunde-bluelineparkonline-booking/" target="_blank">線上訂票教學 →</a><br><br>
+              <div class="cal-box">
+                <div class="cal-title">📅 最早可預訂日期</div>
+                <div style="font-size:15px;font-weight:700;color:var(--purple);margin-bottom:4px;">2026年7月26日（星期日）</div>
+                <div style="font-size:12.5px;color:var(--tx2);">距今約 91 天（以今天 2026年4月26日計算）<br>票價售罄極快，建議 <strong>26/07 一開放即訂</strong>！</div>
+                <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%F0%9F%9A%82%20%E7%AB%8B%E5%8D%B3%E8%A8%82%E5%A4%A9%E7%A9%BA%E8%86%A0%E5%9B%8A%E7%81%AB%E8%BB%8A%E7%A5%A8%EF%BC%81%EF%BC%88bluelinepark.com%EF%BC%8909/08%E9%87%9C%E5%B1%B1%E8%A1%8C%E7%A8%8B&dates=20260726/20260726&details=%E7%AB%8B%E5%8D%B3%E7%99%BB%E5%85%A5%20bluelinepark.com%20%E6%90%B6%E7%A5%A8%EF%BC%81%0A%E9%81%B8%E6%93%87%2009/08/2026%20%E6%97%A9%E4%B8%8A10%3A00%E6%88%9610%3A30%E5%A0%B4%E6%AC%A1%EF%BC%88%E5%B0%BE%E6%B5%A6%E5%87%BA%E7%99%BC%EF%BC%89%0A%E7%A5%A8%E5%BE%88%E5%BF%AB%E5%94%AE%E7%BD%84%EF%BC%8C%E4%BB%8A%E5%A4%A9%E5%B0%B1%E8%A8%82%EF%BC%81&location=https%3A//www.bluelinepark.com" target="_blank">📅 加入 Google Calendar 提醒</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VBP -->
+        <div class="wr">
+          <div class="wdot" style="background:var(--purple)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--purple)">🎫 購買 Visit Busan Pass BIG5</div>
+            <div class="wx">在 <strong>Klook</strong> 或 <strong>KKday</strong> 購買，留意 HSBC 或其他信用卡優惠碼。<br><br>
+            <strong>BIG5 分配：</strong><br>
+            紫色 A 組（選2）：A-1 Skyline Luge · A-2 樂天世界<br>
+            藍色 B 組（選3）：B-1 海岸列車 · B-2 松島纜車 · B-3 ARTE MUSEUM<br>
+              <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%F0%9F%8E%AB%20%E8%B3%BC%E8%B2%B7%20Visit%20Busan%20Pass%20BIG5%EF%BC%88Klook/KKday%EF%BC%89%E9%87%9C%E5%B1%B1%E6%97%85%E8%A1%8C&dates=20260726/20260726&details=%E5%8E%BB%20Klook%20%E6%88%96%20KKday%20%E8%B3%BC%E8%B2%B7%20Visit%20Busan%20Pass%20BIG5%0A%E7%95%99%E6%84%8F%20HSBC%20%E4%BF%A1%E7%94%A8%E5%8D%A1%E5%84%AA%E6%83%A0%E7%A2%BC%0AA%E7%B5%84%E9%81%B82%EF%BC%9ASkyline%20Luge%20%2B%20%E6%A8%82%E5%A4%A9%E4%B8%96%E7%95%8C%0AB%E7%B5%84%E9%81%B83%EF%BC%9A%E6%B5%B7%E5%B2%B8%E5%88%97%E8%BB%8A%20%2B%20%E6%9D%BE%E5%B3%B6%E7%BA%9C%E8%BB%8A%20%2B%20P.ARK&location=https%3A//www.klook.com" target="_blank">📅 加入 Google Calendar 提醒</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOREIGN DISCOUNTS -->
+        <div class="wr">
+          <div class="wdot" style="background:var(--purple)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--purple)">Research 外國旅客專屬優惠</div>
+            <div class="wx">
+              📌 <strong>新世界百貨（Shinsegae）</strong><br>
+              · 外國遊客可在 <strong>3樓服務台</strong> 免費申請 <strong>Global Membership Card</strong>，憑護照辦理<br>
+              · 會員卡可換領飲品及享有購物折扣<br>
+              · 官網預先了解：<a href="https://www.shinsegae.com" target="_blank">shinsegae.com →</a><br><br>
+              📌 <strong>Olive Young</strong><br>
+              · 外國人可在店內出示護照申請 <strong>免稅（Tax Refund）</strong>，購物滿₩30,000可退稅<br>
+              · 出發前搜尋「Olive Young coupon foreign tourist」找優惠碼<br>
+              · Olive Young 官方 App：<a href="https://www.oliveyoung.co.kr" target="_blank">oliveyoung.co.kr →</a><br><br>
+              📌 <strong>樂天百貨 / 樂天 Outlet</strong><br>
+              · 外國護照持有人可在服務台換取 <strong>Welcome Coupon</strong>（通常5–10%折扣）<br>
+              · 購物滿額可享 Tax Refund 退稅
+            </div>
+          </div>
+        </div>
+
+        <!-- GOOGLE CALENDAR ALL REMINDERS -->
+        <div class="cal-box" style="margin-top:4px;">
+          <div class="cal-title">📅 一鍵加入全部重要提醒到 Google Calendar</div>
+          <div class="cal-grid">
+            <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%F0%9F%8E%AB%20%E8%B3%BC%E8%B2%B7%20Visit%20Busan%20Pass%20BIG5%EF%BC%88Klook/KKday%EF%BC%89%E9%87%9C%E5%B1%B1%E6%97%85%E8%A1%8C&dates=20260726/20260726&details=%E5%8E%BB%20Klook%20%E6%88%96%20KKday%20%E8%B3%BC%E8%B2%B7%20Visit%20Busan%20Pass%20BIG5%0A%E7%95%99%E6%84%8F%20HSBC%20%E4%BF%A1%E7%94%A8%E5%8D%A1%E5%84%AA%E6%83%A0%E7%A2%BC&location=https%3A//www.klook.com" target="_blank">📅 26/07 — 🎫 購買 Visit Busan Pass BIG5</a>
+            <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E2%9C%88%EF%B8%8F%20UO674%20%E7%B6%B2%E4%B8%8A%E8%BE%A6%E7%90%86%E7%99%BB%E6%A9%9F%E6%89%8B%E7%BA%8C%EF%BC%88%E5%8E%BB%E7%A8%8BHKG%E2%86%92PUS%EF%BC%89&dates=20260806T011400Z/20260806T021400Z&details=%E7%99%BB%E5%85%A5%20hkexpress.com%20%E2%86%92%20%E8%BE%A6%E7%90%86%20UO674%20%E2%86%92%20%E5%85%8D%E8%B2%BB%E9%81%B8%E5%BA%A7%20%E2%86%92%20%E6%88%AA%E5%9C%96%E7%99%BB%E6%A9%9F%E8%AD%89%0AUO674%20HKG%E2%86%92PUS%2007/08/2026%2009%3A14%E8%B5%B7%E9%A3%9B&location=https%3A//www.hkexpress.com" target="_blank">📅 06/08 09:14 — ✈️ UO674 網上辦理登機（去程）</a>
+            <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%F0%9F%87%B0%F0%9F%87%B7%20%E5%87%BA%E7%99%BC%EF%BC%81%E5%A4%A7%E5%9F%94%E6%96%B0%E5%B3%B0%E8%8A%B1%E5%9C%92%E2%86%92%E6%A9%9F%E5%A0%B4%20UO674%20%E9%87%9C%E5%B1%B1%E4%B9%8B%E6%97%85&dates=20260807T211400Z/20260807T231400Z&details=05%3A15%20%E9%9B%A2%E9%96%8B%E6%96%B0%E5%B3%B0%E8%8A%B1%E5%9C%921%E6%9C%9F%0A05%3A30%20%E6%90%ADA47X%E5%B7%B4%E5%A3%AB%E5%BE%80%E6%A9%9F%E5%A0%B4%0A07%3A00%20%E5%88%B0%E9%81%94%E9%A6%99%E6%B8%AF%E5%9C%8B%E9%9A%9B%E6%A9%9F%E5%A0%B4%20T1%0A09%3A14%20UO674%20%E8%B5%B7%E9%A3%9B%20%E2%9C%88%EF%B8%8F&location=%E5%A4%A7%E5%9F%94%E5%A2%9F%E7%81%AB%E8%BB%8A%E7%AB%99%20A47X%20%E5%B7%B4%E5%A3%AB%E7%AB%99" target="_blank">📅 07/08 05:15 — 🇰🇷 出發！大埔新峰花園→機場</a>
+            <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E2%9C%88%EF%B8%8F%20UO675%20%E7%B6%B2%E4%B8%8A%E8%BE%A6%E7%90%86%E7%99%BB%E6%A9%9F%E6%89%8B%E7%BA%8C%EF%BC%88%E5%9B%9E%E7%A8%8BPUS%E2%86%92HKG%EF%BC%89&dates=20260810T052000Z/20260810T062000Z&details=%E7%99%BB%E5%85%A5%20hkexpress.com%20%E2%86%92%20%E8%BE%A6%E7%90%86%20UO675%20%E2%86%92%20%E5%85%8D%E8%B2%BB%E9%81%B8%E5%BA%A7%20%E2%86%92%20%E6%88%AA%E5%9C%96%E7%99%BB%E6%A9%9F%E8%AD%89%0AUO675%20PUS%E2%86%92HKG%2011/08/2026%2014%3A20%E8%B5%B7%E9%A3%9B&location=https%3A//www.hkexpress.com" target="_blank">📅 10/08 晚 — ✈️ UO675 網上辦理登機（回程）</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1 WEEK BEFORE -->
+    <div class="tc">
+      <h3>🗓️ 出發前1週</h3>
+      <div class="tb">
+        <div class="wr">
+          <div class="wdot" style="background:var(--blue)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--blue)">下載並設定 Kakao T 叫的士 App</div>
+            <div class="wx">
+              <a href="https://apps.apple.com/app/id981110422" target="_blank">iOS 下載 →</a> &nbsp;|&nbsp; <a href="https://play.google.com/store/apps/details?id=com.kakao.taxi" target="_blank">Android 下載 →</a><br><br>
+              設定步驟：下載後用手機號碼或 Kakao 帳號註冊 → 加入信用卡（備用）→ 出發前測試一次叫車流程。<br><br>
+              ⚠️ <strong>付款重要提示：</strong>Kakao T <strong>未必能以外國信用卡付款</strong>，部分司機只收現金。每次上車前先問：<br>
+              「<strong>카드 되나요？</strong>」（可以刷卡嗎？）<br>
+              如不能則用現金。<strong>出門前確保有足夠韓圜現金在手！</strong>
+            </div>
+          </div>
+        </div>
+        <div class="wr">
+          <div class="wdot" style="background:var(--blue)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--blue)">下載 KakaoMap 或 NAVER Map</div>
+            <div class="wx">韓國境內步行及駕車導航，遠比 Google Maps 準確。建議兩個都裝。</div>
+          </div>
+        </div>
+        <div class="wr">
+          <div class="wdot" style="background:var(--blue)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--blue)">在香港換少量韓圜（機場到酒店用）</div>
+            <div class="wx">
+              機場到酒店計程車約 ₩35,000–45,000（≈ HK$190–240）。建議在香港尖沙咀 / 旺角換好至少 <strong>₩100,000–150,000</strong> 現金應急，剩餘待到南浦洞換錢所補換（匯率更好）。<br>
+              <strong>不要在機場換太多</strong>，金海機場匯率較差！
+            </div>
+          </div>
+        </div>
+        <div class="wr">
+          <div class="wdot" style="background:var(--blue)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--blue)">下載 Olive Young App 及搜尋優惠券</div>
+            <div class="wx">搜尋「Olive Young tourist coupon」或「올리브영 외국인 쿠폰」，可找到10–15%折扣碼。<a href="https://www.oliveyoung.co.kr" target="_blank">官網 →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 DAYS BEFORE -->
+    <div class="tc">
+      <h3>🗓️ 出發前3天（04/08）</h3>
+      <div class="tb">
+        <div class="wr">
+          <div class="wdot" style="background:var(--green)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--green)">確認行李重量限額（UO674去程 / UO675回程 · 4人）</div>
+            <div class="wx">
+              <strong>去程 07/08（HKG → PUS）</strong><br>
+              ✈️ 託運：20kg × 4人 = 合共 80kg<br>
+              🎒 手提：7kg × 2件（共2件機艙行李）<br><br>
+              <strong>回程 11/08（PUS → HKG）</strong><br>
+              ✈️ 託運：32kg × 2人 + 20kg × 2人 = 合共 104kg<br>
+              🎒 手提：7kg × 2件（共2件機艙行李）<br><br>
+              💡 <strong>棉被策略：</strong>回程32kg額度充裕，真空壓縮棉被放入32kg行李箱，完全沒問題！<br>
+              ⚠️ 每件手提行李連隨身物品不可超過7kg，登機前記得磅重確認。
+            </div>
+          </div>
+        </div>
+        <div class="wr">
+          <div class="wdot" style="background:var(--green)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--green)">準備行李：去程帶足現金及空間</div>
+            <div class="wx">去程行李盡量輕裝，為回程購物（棉被、手信、美妝、服飾）留空間。建議帶一個可折疊購物袋備用。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1 DAY BEFORE -->
+    <div class="tc">
+      <h3>🗓️ 出發前1天（06/08）</h3>
+      <div class="tb">
+        <div class="wr">
+          <div class="wdot" style="background:var(--coral)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--coral)">網上辦理登機手續 — UO674（去程）</div>
+            <div class="wx">
+              HK Express 通常於起飛前24小時開放網上值機。<br>
+              登入 <a href="https://www.hkexpress.com" target="_blank">hkexpress.com →</a> → 輸入訂單號 → 辦理 UO674（去程）→ 免費選座 → 截圖或下載登機證備用。<br><br>
+              ✅ 完成後截圖存入相簿，亦建議截圖給每位同行人士。
+            </div>
+          </div>
+        </div>
+        <div class="wr">
+          <div class="wdot" style="background:var(--coral)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--coral)">🚌 計劃出發交通 — 大埔新峰花園1期 → 香港國際機場</div>
+            <div class="wx">
+              <strong>UO674 預計出發時間：09:14</strong>（請以你的機票確認）<br>
+              HK Express 建議起飛前 <strong>2小時</strong> 完成登機手續，即最遲 <strong>07:14</strong> 到達機場。<br><br>
+              <strong>路線：大埔新峰花園1期 → 步行至大埔墟火車站 → A47X 巴士 → 香港國際機場 T1</strong>
+              <div class="xcard" style="margin-top:8px;margin-bottom:8px;">
+                <div class="xn">⏰ 建議出發時間</div>
+                <div class="xi">
+                  新峰花園1期 → 大埔墟火車站巴士站：步行約 <strong>10–15分鐘</strong><br>
+                  A47X 大埔墟站 → 機場 T1：約 <strong>60–75分鐘</strong>（早上繁忙時間可能更長）<br>
+                  全程合計：約 <strong>75–90分鐘</strong><br><br>
+                  ✅ 建議搭乘 <strong>05:30 前後</strong> 由大埔墟出發的班次<br>
+                  → 即最遲 <strong>05:15</strong> 離開家門步行往巴士站<br>
+                  → 預計 <strong>06:45–07:00</strong> 到達機場 ✅（07:14 前完成登機手續，充裕）<br><br>
+                  💡 出發前用 <strong>Moovit</strong> 或 <strong>香港巴士 ETA</strong> App 查看 A47X 實時班次
+                </div>
+              </div>
+              <strong>A47X 重要資訊：</strong><br>
+              · 路線：大埔（太和）↔ 香港國際機場（地面運輸中心）<br>
+              · 途經：大埔墟火車站 → 科學園 → 青嶼幹線 → 機場 T1<br>
+              · 首班車：約 <strong>05:00</strong> 由太和出發<br>
+              · 票價：約 <strong>HK$29</strong>（成人）<br>
+              · 可用 Octopus 或現金<br>
+              · 巴士站：大埔墟火車站巴士總站（近地鐵站出口）<br><br>
+              ⚠️ <strong>4人大行李提示：</strong>巴士行李架位置有限，早班車較易找位置。如行李特別多，可考慮的士或 Grab 直接去機場（約 HK$280–350）。
+            </div>
+          </div>
+        </div>
+        <div class="wr">
+          <div class="wdot" style="background:var(--coral)"></div>
+          <div class="wc">
+            <div class="wt" style="color:var(--coral)">最後確認清單</div>
+            <div class="wx">
+              □ 護照有效期（至少6個月）<br>
+              □ 旅遊保險已購買<br>
+              □ 釜山通行證 BIG5 QR Code 已截圖<br>
+              □ 酒店確認書已列印或截圖<br>
+              □ 韓圜現金已準備（至少₩100,000–150,000 應急）<br>
+              □ Kakao T / KakaoMap / NAVER Map 已安裝測試<br>
+              □ Olive Young App 優惠碼已儲存
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DAY 1 ===== -->
+
+</div>
+
+<!-- ===================== TIPS ===================== -->
+<div class="tips-app" id="tipsApp" style="display:none;padding-bottom:80px;">
+<div class="mini-hdr">
+  <h2>💡 換錢 &amp; 實用貼士</h2>
+  <p>匯率換算 · 交通 · 棉被攻略</p>
+</div>
+<div class="stw">
+  <div class="stabs">
+    <button class="tab active" onclick="st(0)">💱 換錢 &amp; 提示</button>
+    <button class="tab" onclick="st(1)">🛏️ 棉被攻略</button>
+    <button class="tab" onclick="st(2)">🛋️ 沙發蓋毯</button>
+  </div>
+</div>
+<div class="content">
+<div class="tp active" id="tip-0">
+  <div class="tips">
+
+    <div class="tc">
+      <h3>💱 港幣換韓圜攻略</h3>
+      <div class="tb">
+        <div class="calc">
+          <h4>💵 參考匯率（2026年，約 HK$1 ≈ ₩187）</h4>
+          <div class="calc-grid">
+            <div class="cgi"><span class="hkd">HK$500</span><br><span class="krw">≈ ₩93,500</span></div>
+            <div class="cgi"><span class="hkd">HK$1,000</span><br><span class="krw">≈ ₩187,000</span></div>
+            <div class="cgi"><span class="hkd">HK$2,000</span><br><span class="krw">≈ ₩374,000</span></div>
+            <div class="cgi"><span class="hkd">HK$5,000</span><br><span class="krw">≈ ₩935,000</span></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <div class="tr"><span class="l">最推薦方式</span><span class="v">香港出發前換好韓圜</span></div>
+          <div class="tr"><span class="l">香港換錢地點</span><span class="v">尖沙咀加拿芬道 / 旺角奶路臣街</span></div>
+          <div class="tr"><span class="l">南浦洞首選</span><span class="v">Moneybox ⭐4.9 / 友利換錢所 ⭐4.4</span></div>
+          <div class="tr"><span class="l">現金必備場合</span><span class="v">市場、計程車、藝珠寢具、街頭小食</span></div>
+        </div>
+        <div class="xcard" style="margin-top:10px;"><div class="xn">① Moneybox Nampo ⭐ 4.9</div><div class="xi">光復路38號 · 09:00–21:00（週末10:00起）· 無需護照</div><a href="https://www.google.com/maps/search/?api=1&query=Moneybox+Nampo+Currency+Exchange+Busan" target="_blank">→ Google Maps</a></div>
+        <div class="xcard" style="margin-top:6px;"><div class="xn">② 友利換錢所 ⭐ 4.4 · 接受 HKD ✅</div><div class="xi">光復路97街1號 · 08:30–20:00 · +82 10-7670-7987</div><a href="https://www.google.com/maps/search/?api=1&query=Woori+Exchange+Nampo+Busan" target="_blank">→ Google Maps</a></div>
+        <div class="bam" style="margin-top:8px;"><div class="t">💡 建議帶多少現金（₩）</div><ul class="x"><li>藝珠寢具棉被：₩200,000</li><li>機張雪蟹午餐（2人）：₩150,000–200,000</li><li>計程車費（5天）：₩200,000–300,000</li><li>街頭小食、市場：₩50,000<br><strong>建議兌換合計：₩700,000–800,000 ≈ HK$3,700–4,300</strong></li></ul></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🎫 釜山通行證（VBP）BIG5 分配</h3>
+      <div class="tb">
+        <div class="vg"><div class="vl">紫色 A 組（選2）</div><div class="vi">A-1：Skyline 滑車（08/08 第二天）</div><div class="vi">A-2：樂天世界（08/08 第二天）</div></div>
+        <div class="vg"><div class="vl">藍色 B 組（選3）</div><div class="vi">B-1：海岸列車（09/08 第三天，回程）</div><div class="vi">B-2：松島海上纜車（10/08 第四天）</div><div class="vi">B-3：ARTE MUSEUM（10/08 第四天）</div></div>
+        <div style="font-size:12.5px;color:var(--tx2);margin-top:6px;">在 Klook 或 KKday 購買，留意 HSBC 優惠碼。Spa Land 可自費替換 B 組一項。</div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>⚠️ 必須提前預約事項</h3>
+      <div class="tb">
+        <div class="wr"><div class="wdot"></div><div class="wc"><div class="wt">出發前：Klook / KKday 購買 VBP BIG5</div><div class="wx">搜尋 HSBC 或信用卡優惠碼。</div></div></div>
+        <div class="wr"><div class="wdot"></div><div class="wc"><div class="wt">✅ 已用 CatchTable 訂位：朝鮮의韓牛火焰秀</div><div class="wx">08/08晚餐「불꽃쇼 자리」（火焰秀座位）已透過 CatchTable App 預約好，不用再致電前台。</div></div></div>
+        <div class="wr"><div class="wdot"></div><div class="wc"><div class="wt">CatchTable App：尾浦家醬油蟹</div><div class="wx"><a href="https://app.catchtable.co.kr" target="_blank">CatchTable Global App →</a>　提前預約或避開12:00–13:00高峰。</div></div></div>
+        <div class="wr"><div class="wdot"></div><div class="wc"><div class="wt">10/08 晚：UO675（回程）網上登機手續</div><div class="wx"><a href="https://www.hkexpress.com" target="_blank">hkexpress.com →</a>　辦理 UO675（回程），免費選座，下載登機證備用。</div></div></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🚕 每天交通時間參考</h3>
+      <div class="tb">
+        <div class="tr"><span class="l">機場→南浦洞酒店</span><span class="v">計程車40分鐘 ≈₩35,000–45,000</span></div>
+        <div class="tr"><span class="l">酒店→南浦洞景點</span><span class="v">步行10–15分鐘（免費）</span></div>
+        <div class="tr"><span class="l">酒店→機張（Luge）</span><span class="v">計程車約50分鐘 ≈₩45,000–55,000</span></div>
+        <div class="tr"><span class="l">酒店→尾浦站</span><span class="v">計程車約45分鐘 ≈₩40,000–50,000</span></div>
+        <div class="tr"><span class="l">酒店→影島白淺灘（第四天）</span><span class="v">計程車約15分鐘 ≈₩10,000–13,000</span></div>
+        <div class="tr"><span class="l">P.ARK→札嘎其市場（第四天）</span><span class="v">計程車約15分鐘 ≈₩10,000–13,000</span></div>
+        <div class="tr"><span class="l">酒店→金海機場</span><span class="v">計程車約40分鐘 ≈₩35,000–45,000</span></div>
+        <div class="tr"><span class="l">⏰ 第五天最後購物折返</span><span class="v" style="color:#D95C30;font-weight:700;">10:30（11:00需離開酒店）</span></div>
+      </div>
+    </div>
+
+
+    <div class="tc">
+      <h3>🛏️ 棉被採購攻略 — 三間推薦店</h3>
+      <div class="tb">
+        <div class="xcard">
+          <div class="xn">① 藝珠寢具 예주이불 ⭐ 4.9（1,033則）</div>
+          <div class="xi">國際市場2街6號1樓 · 09:00–20:00 每日 · +82 51-246-4068<br>評價最多，最多旅遊博主推薦，質料選擇豐富</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=예주이불+Gukjesijang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">② 京信寢具 경신침구 ⭐ 4.9（1,033則）</div>
+          <div class="xi">國際市場2街16-1號 · 09:00–18:00 每日 · +82 51-245-3156<br>評分同樣極高，與藝珠寢具同區，可兩間比價</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=경신침구+Gukjesijang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">③ 永一寢具 영일침구 永一寢具 ⭐ 5.0（61則）</div>
+          <div class="xi">新倉洞4街56-4號 · +82 51-245-2627<br>老闆及老闆娘<strong>會說中文、英文、韓文</strong>，溝通零障礙。老字號，1950年代開業。接受信用卡（但老闆偏好現金）。曾有客人買12張棉被，獲最好價格。老闆可安排送貨到酒店。</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=영일침구+Sinchang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="bg" style="margin-top:10px;"><div class="t">三間比較策略</div><div class="x">三間均在國際市場棉被街附近，步行數分鐘。建議到齊三間看看質料和價格，不一定要在同一間買。<strong>永一寢具老闆會說英文和中文</strong>，是語言溝通最方便的選擇。京信寢具注意18:00較早關門。</div></div>
+        <div class="bam" style="margin-top:8px;"><div class="t">預算及現金提示</div><div class="x">預算約₩200,000 ≈ HK$1,060（現金）。三間均建議帶現金，永一寢具雖接受信用卡，但老闆偏好現金，可能有更好折扣。</div></div>
+        <div style="font-size:12.5px;color:var(--tx2);margin-top:8px;">詳細質料分析請看「🛏️ 棉被攻略」分頁。</div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🧾 退稅攻略（Tax Refund）完整教學</h3>
+      <div class="tb">
+
+        <div class="bte"><div class="t">什麼是退稅？</div><div class="x">韓國對外國遊客提供購物退稅服務，退回購物時支付的 <strong>VAT（增值稅，約10%）</strong>。合資格購物退稅後，即食部分金額回來，是重要省錢技巧！</div></div>
+
+        <div style="margin-top:12px;font-weight:700;font-size:13px;color:var(--text);">📋 退稅資格</div>
+        <div class="tr"><span class="l">身份要求</span><span class="v">持外國護照的非韓國居民</span></div>
+        <div class="tr"><span class="l">最低消費</span><span class="v">同一間店單次消費滿 <strong>₩30,000</strong></span></div>
+        <div class="tr"><span class="l">購買限期</span><span class="v">出境前3個月內購買</span></div>
+        <div class="tr"><span class="l">不適用</span><span class="v">食品、餐飲、服務類消費（如汗蒸幕）</span></div>
+
+        <div style="margin-top:14px;font-weight:700;font-size:13px;color:var(--text);">🏬 方法一：百貨公司 / 大型商場即場退稅</div>
+        <div class="xcard" style="margin-top:6px;">
+          <div class="xn">新世界百貨 Centum City · 樂天百貨光復店</div>
+          <div class="xi">
+            <strong>Step 1</strong> — 結帳時出示<strong>護照</strong>，告知「Tax Refund」，收銀員會印退稅收據<br>
+            <strong>Step 2</strong> — 攜帶退稅收據及護照到各層或地庫的<strong>退稅服務台</strong><br>
+            <strong>Step 3</strong> — 可選擇即場退現金（₩，扣手續費）或信用卡退款<br>
+            <strong>Step 4</strong> — 退稅金額即時到手 ✅ 無需等到機場<br><br>
+            💡 新世界百貨 Global Membership Card 折扣 <strong>可疊加</strong> Tax Refund，雙重慳錢！
+          </div>
+        </div>
+
+        <div style="margin-top:14px;font-weight:700;font-size:13px;color:var(--text);">🏪 方法二：一般商店（Olive Young、普通店舖）</div>
+        <div class="xcard" style="margin-top:6px;">
+          <div class="xn">Olive Young · 一般服裝店 · 藥妝店</div>
+          <div class="xi">
+            <strong>Step 1</strong> — 結帳時出示<strong>護照</strong>，索取退稅收據（Tax Refund Receipt）<br>
+            <strong>Step 2</strong> — 注意：部分小店只提供<strong>Global Blue</strong> 或 <strong>TRAXTAX</strong> 退稅單，需到機場領取退款<br>
+            <strong>Step 3</strong> — 保存所有退稅收據及購買收據至出境當天
+          </div>
+        </div>
+
+        <div style="margin-top:14px;font-weight:700;font-size:13px;color:var(--text);">✈️ 方法三：金海機場退稅（出境當天 11/08）</div>
+        <div class="xcard" style="margin-top:6px;">
+          <div class="xn">金海機場國際出發大廳</div>
+          <div class="xi">
+            <strong>Step 1 — 辦理登機手續後、過海關前</strong><br>
+            找到 <strong>Tax Refund Counter</strong>（退稅服務台），通常在出發大廳入境前<br><br>
+            <strong>Step 2 — 準備文件</strong><br>
+            · 所有退稅收據（Tax Refund Receipt）<br>
+            · 護照<br>
+            · 登機證<br>
+            · 購買的商品（海關有時要求驗貨，建議不要先放入托運行李）<br><br>
+            <strong>Step 3 — 過海關後：自動退稅機</strong><br>
+            金海機場出境後設有 <strong>Global Blue / TRAXTAX 自動退稅機</strong><br>
+            插入護照 → 掃描退稅單條碼 → 選擇退款方式（現金或信用卡）→ 完成<br><br>
+            <strong>Step 4 — 退款方式</strong><br>
+            · 現金退款：即時領取韓圜（建議！可即時用或換港幣）<br>
+            · 信用卡退款：約1–3個月後回帳
+          </div>
+        </div>
+
+        <div class="bam" style="margin-top:10px;"><div class="t">⚠️ 11/08 當天退稅時間提示</div><div class="x">
+          由酒店11:00出發，計程車40分鐘，約11:40到機場。<br>
+          辦理登機手續後預留 <strong>約30分鐘</strong> 處理退稅，時間足夠。<br>
+          ✅ 建議優先辦理登機 → 再去退稅台 → 最後過海關到登機閘口。
+        </div></div>
+
+        <div class="bg" style="margin-top:8px;"><div class="t">退稅實用 App</div><div class="x">
+          下載 <strong>Global Blue</strong> App 或 <strong>TRAXTAX</strong> App，可預先掃描收據，加快機場退稅速度。部分商店退稅收據有 QR Code，直接掃入 App 即可。
+        </div></div>
+
+        <div style="margin-top:12px;">
+          <div class="tr"><span class="l">退稅估算</span><span class="v">購物₩100,000 退約₩7,000–8,000</span></div>
+          <div class="tr"><span class="l">手續費</span><span class="v">現金退款扣約10–15%手續費</span></div>
+          <div class="tr"><span class="l">信用卡退款</span><span class="v">手續費較低，但需等1–3個月</span></div>
+          <div class="tr"><span class="l">Global Blue 熱線</span><span class="v">+82 2-3480-2000</span></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DUVET PAGE ===== -->
+<div class="tp" id="tip-1">
+  <div class="tips">
+
+    <div class="tc">
+      <h3>📍 國際市場棉被街 — 推薦店（第四天先去大明＋京信比價）</h3>
+      <div class="tb">
+        <div class="xcard">
+          <div class="xn">⭐ 大明寢具 대명침구 — 今天優先比價</div>
+          <div class="xi">國際市場棉被街內，與京信寢具相近，步行數分鐘可達<br>第四天行程首站，先問價、摸質料，與京信寢具比較後再決定</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=대명침구+Gukjesijang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">⭐ 京信寢具 경신침구 ⭐ 4.9（1,033則）— 今天優先比價</div>
+          <div class="xi">國際市場2街16-1號 · 09:00–18:00 每日（⚠️ 較早關門）· +82 51-245-3156<br>評分極高，與大明寢具同區，步行數分鐘，建議兩間比價後再決定</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=경신침구+Gukjesijang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">藝珠寢具 예주이불 ⭐ 4.9（1,033則）— 備選</div>
+          <div class="xi">國際市場2街6號1樓 · 09:00–20:00 每日 · +82 51-246-4068<br>最多旅遊博主推薦，質料選擇豐富，現金優先。如大明／京信不合心水可再來這間</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=예주이불+Gukjesijang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">永一寢具 영일침구 永一寢具 ⭐ 5.0（61則）— 語言最方便</div>
+          <div class="xi">新倉洞4街56-4號 · +82 51-245-2627<br>🌟 老闆及老闆娘<strong>會說中文、英文、韓文</strong>，溝通零障礙。1950年代開業老字號。<br>接受信用卡（但老闆偏好現金，現金可能有更好折扣）。<br>可安排真空壓縮後送貨到酒店。有食客一次買12張棉被，獲最好價格。</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=영일침구+Sinchang+Busan" target="_blank">→ Google Maps</a>
+        </div>
+        <div class="bg" style="margin-top:10px;"><div class="t">比價策略</div><div class="x">全部步行數分鐘可達。第四天先去<strong>大明寢具</strong>同<strong>京信寢具</strong>兩間問價比較，不滿意再去藝珠或永一寢具睇下。注意京信寢具18:00關門，需早點去。</div></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🛏️ 韓式棉被質料分析 × 英國使用指南</h3>
+      <div class="tb">
+        <div class="bte"><div class="t">結論先說</div><div class="x">你建議的三個韓文關鍵字<strong>完全正確</strong>！在英國使用，<strong>모달 세미 마이크로（Modal Semi-Microfiber）是最均衡的首選</strong>，性價比最高。</div></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>📊 韓式棉被 vs Dunelm Microfibre 比較</h3>
+      <div class="tb">
+        <p style="font-size:13px;color:var(--tx2);margin-bottom:8px;">Dunelm Fogarty 系列（如 Just Like Down、Superfull）填充物是 <strong>polyester hollowfibre</strong>（中空聚酯纖維），外層是 polyester microfibre，設計模仿羽絨的蓬鬆感。</p>
+        <table class="dtbl">
+          <tr><th>項目</th><th>Dunelm Fogarty（英國）</th><th>韓式 Modal Semi-Micro</th></tr>
+          <tr><td>填充物</td><td>Polyester hollowfibre</td><td>通常相近（聚酯纖維）</td></tr>
+          <tr><td>外層面料</td><td>Polyester microfibre</td><td>Modal / Semi-Microfiber（更高級）</td></tr>
+          <tr><td>觸感</td><td>普通軟滑</td><td><span class="star">★★★★★</span> 明顯更滑更細膩</td></tr>
+          <tr><td>防塵蟎</td><td>部分需化學處理</td><td>Modal 天然防塵蟎 ✅</td></tr>
+          <tr><td>透氣性</td><td>一般</td><td>Modal 成分較佳</td></tr>
+          <tr><td>保暖度</td><td>有 Tog 評級（10.5–13.5）</td><td>無 Tog 評級，靠厚度判斷</td></tr>
+          <tr><td>易洗</td><td>可機洗 40°C ✅</td><td>可機洗 ✅（需確認標籤）</td></tr>
+          <tr><td>價格</td><td>£30–£80</td><td>₩150,000–250,000 ≈ HK$800–1,300</td></div></tr>
+        </table>
+        <div class="bg" style="margin-top:8px;"><div class="t">關鍵分別</div><div class="x">韓式棉被的核心優勢在於<strong>外層面料更高級</strong>（Modal/Semi-Micro），觸感比 Dunelm 的 polyester 外殼明顯更細膩滑順。Dunelm 的優勢是有清楚的 Tog 評級，方便選擇保暖度。</div></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🏆 三種質料詳細評比（英國使用）</h3>
+      <div class="tb">
+
+        <div class="xcard">
+          <div class="xn">① 모달 세미 마이크로 Modal Semi-Microfiber <span class="badge-top">首選推薦</span></div>
+          <div class="xi" style="margin-top:4px;">
+            <strong>英國適合度：⭐⭐⭐⭐⭐（5/5）</strong><br>
+            · 滑順觸感 + Modal 天然防塵蟎，無需額外化學處理<br>
+            · 輕盈透氣，中央暖氣房間冬暖夏涼適中<br>
+            · 可機洗，易護理<br>
+            · 最均衡選擇，性價比最高<br>
+            <strong>特別適合：</strong>一般正常體質，英國四季皆用
+          </div>
+        </div>
+
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">② 100% 모달 Pure Modal</div>
+          <div class="xi" style="margin-top:4px;">
+            <strong>英國適合度：⭐⭐⭐⭐（4/5）</strong><br>
+            · 觸感最極致，如棉花糖般柔軟，對皮膚最友善<br>
+            · 吸濕排汗比 Semi-Micro 更佳<br>
+            · 價格較貴，且 Modal 在英國潮濕冬天乾燥速度比 Semi-Micro 略慢<br>
+            <strong>特別適合：</strong>皮膚乾燥 / 敏感肌 / 注重觸感的用者
+          </div>
+        </div>
+
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">③ 번아웃 극세사 Burn-out Microfiber（絨毛感極細纖維）</div>
+          <div class="xi" style="margin-top:4px;">
+            <strong>英國適合度：⭐⭐⭐（3/5）</strong><br>
+            · 表面有細絨毛，鑽進去即刻暖身，英國冬天寒流時最暖<br>
+            · 純合成纖維，透氣性較差，英國春秋可能偏熱悶<br>
+            · 英國有中央暖氣，保暖需求已被暖氣滿足，純合成纖維反而顯得悶<br>
+            <strong>特別適合：</strong>極怕冷 / 睡覺冷 / 無中央暖氣的舊式英國房屋
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🇰🇷 現場採購韓文關鍵字</h3>
+      <div class="tb">
+        <p style="font-size:13px;color:var(--tx2);margin-bottom:10px;">直接給老闆看以下韓文，或拍照帶進店：</p>
+
+        <div class="xcard">
+          <div class="xn">1️⃣ 性價比首選（推薦）</div>
+          <div class="xi">
+            <div style="font-size:18px;font-weight:700;color:var(--blue);margin:6px 0;">모달 세미 마이크로</div>
+            Modal Semi-Microfiber<br>
+            特點：滑順 · 防塵蟎 · 輕盈 · 英國冬天最實用 · 性價比最高
+          </div>
+        </div>
+
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">2️⃣ 極致親膚（皮膚乾燥者）</div>
+          <div class="xi">
+            <div style="font-size:18px;font-weight:700;color:var(--blue);margin:6px 0;">100% 모달</div>
+            100% Modal<br>
+            特點：觸感如棉花糖 · 吸濕排汗極佳 · 最呵護皮膚
+          </div>
+        </div>
+
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">3️⃣ 最保暖（極怕冷者）</div>
+          <div class="xi">
+            <div style="font-size:18px;font-weight:700;color:var(--blue);margin:6px 0;">번아웃 극세사</div>
+            Burn-out Microfiber<br>
+            特點：表面細絨毛 · 鑽進去一秒暖身 · 適合英國寒流夜晚
+          </div>
+        </div>
+
+        <div class="xcard" style="margin-top:8px;">
+          <div class="xn">4️⃣ 真空壓縮包裝（必說）</div>
+          <div class="xi">
+            <div style="font-size:18px;font-weight:700;color:var(--coral);margin:6px 0;">진공 포장해 주세요</div>
+            Vacuum Packing please<br>
+            （否則棉被體積很大，放不進行李箱）
+          </div>
+        </div>
+
+        <div class="bam" style="margin-top:10px;"><div class="t">尺寸確認（英國）</div><ul class="x"><li>UK King Size（特大雙人）：<strong>225cm × 220cm</strong></li><li>UK Single（單人）：<strong>135cm × 200cm</strong></li><li>到現場對照尺寸標籤確認，因為韓國尺寸標準與英國略有不同</li></ul></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>✅ 你的分析是否正確？</h3>
+      <div class="tb">
+        <div class="bte"><div class="t">總評</div><div class="x">你提供的三個韓文詞語<strong>完全正確且實用</strong>，可以直接帶去藝珠寢具使用。建議優先選 <strong>모달 세미 마이크로</strong>，在英國（有中央暖氣的房間）這是最完美的日常被選擇，比 Dunelm 的純 polyester 外層觸感明顯更好，又比 100% Modal 更容易護理，是性價比之王。</div></div>
+        <div class="bg" style="margin-top:8px;"><div class="t">一句話總結</div><div class="x">Dunelm Fogarty = 好用但觸感普通的英國工廠標準品。韓式 Modal Semi-Micro = 同等保暖但外層升級，睡醒你會立刻感受到分別。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ===== SOFA THROW BLANKET PAGE ===== -->
+<div class="tp" id="tip-2">
+  <div class="tips">
+
+    <div class="tc">
+      <h3>🛋️ 沙發蓋毯（소파 블랭킷）／休閒毯（무릎담요）</h3>
+      <div class="tb">
+        <div class="bo"><div class="t">💬 到店直接說（拿手機翻譯或跟店員講）</div><ul class="x">
+          <li><strong>소파에서 덮을만한 담요 찾아요.</strong><br>（我在找一條可以在沙發上蓋的毯子。）</li>
+          <li><strong>세탁기 돌려도 되는 퀄팅 담요예요?</strong><br>（這是可以機洗的絎縫毯嗎？）</li>
+          <li><strong>면 100%인가요?</strong><br>（這是100%純棉的嗎？）</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>1️⃣ 材質選擇：首選「絎縫水洗棉」</h3>
+      <div class="tb">
+        <div class="xcard">
+          <div class="xn">絎縫水洗棉（Quilted Washed Cotton）</div>
+          <div class="xi">這對沙發用途來說是最完美的選擇，原因如下：</div>
+        </div>
+        <div class="bg" style="margin-top:8px;"><div class="t">不掉線、耐摩擦</div><div class="x">絎縫（上面有規律的格紋壓線）將面料與內裡的纖維固定住，就算頻繁挪動、甚至被狗或小孩拉扯，縫線也不易崩裂。</div></div>
+        <div class="bb" style="margin-top:8px;"><div class="t">透氣且溫暖</div><div class="x">這種材質有薄薄一層纖維填充，冬天在暖氣房內蓋著非常舒服，不會過熱，也不會像人工羊毛那樣悶。</div></div>
+        <div class="bam" style="margin-top:8px;"><div class="t">潔癖福音</div><div class="x">它是棉質的，可以放心丟進洗衣機清洗，且材質越洗越軟，非常衛生。</div></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>2️⃣ 建議的尺寸（Size）</h3>
+      <div class="tb">
+        <div class="xcard">
+          <div class="xn">推薦尺寸：約 150cm × 200cm</div>
+          <div class="xi">這在韓國通常被歸類為「單人被（싱글 이불）」或「大號毯」。這個尺寸在沙發上看電視時可以完全覆蓋腿部到肩膀，冬天冷的時候甚至可以把自己包起來，又不會大到拖在地上弄髒。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>3️⃣ 針對「掉線／耐用」的檢查重點</h3>
+      <div class="tb">
+        <div class="x" style="font-size:13px;color:var(--tx2);margin-bottom:8px;">雖然是 Throw（隨手蓋毯），但同樣不想它洗幾次就壞。</div>
+        <div class="bo"><div class="t">看「包邊（Binding）」</div><div class="x">挑選包邊做得寬且厚實的款式。有些便宜的毯子只用簡單的鎖邊（Serging），洗幾次邊緣線就會散開。韓國高質感的毯子，邊緣通常會有同色系的棉布滾邊，非常耐洗。</div></div>
+        <div class="bb" style="margin-top:8px;"><div class="t">檢查「壓線密度」</div><div class="x">壓線的線條越密，這條毯子的結構就越強壯。</div></div>
+      </div>
+    </div>
+
+    <div class="tc">
+      <h3>🌸 韓系家居首選：細碎小花絎縫毯</h3>
+      <div class="tb">
+        <div class="bte"><div class="t">關鍵字記住這個</div><div class="x">有細碎小花（Small Floral Print）的「絎縫水洗棉毯」絕對是韓系家居風格的靈魂！這類毯子在韓國寢具店通常被稱為<br><strong>「플라워 퀄팅 이불」</strong>（Floral Quilting Quilt）<br>或<br><strong>「꽃무늬 누빔 블랭킷」</strong>（Floral Pattern Quilted Blanket）。</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+function sd(i){
+  var scope=document.getElementById('itinApp');
+  scope.querySelectorAll('.dp').forEach(function(p,j){p.classList.toggle('active',j===i);});
+  scope.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function st(i){
+  var scope=document.getElementById('tipsApp');
+  scope.querySelectorAll('.tp').forEach(function(p,j){p.classList.toggle('active',j===i);});
+  scope.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function openTips(i){
+  switchApp('tips');
+  st(i);
+}
+function tg(id){
+  var d=document.getElementById('d'+id);
+  var c=document.getElementById('c'+id);
+  var o=d.classList.contains('show');
+  d.classList.toggle('show',!o);
+  c.classList.toggle('open',!o);
+}
+
+// Inline SheetJS fallback: pure CSV export with Excel-compatible UTF-8 BOM
+// This works even when the CDN is blocked
+function exportExcel(){
+  const rate = getRate();
+  const rows = [];
+
+  // Header
+  rows.push(['釜山旅費記錄 Busan Trip Expenses','','','','','']);
+  rows.push(['匯率 Exchange Rate','HK$1 =',rate,'韓圜 ₩','','']);
+  rows.push(['導出日期','',new Date().toLocaleDateString('zh-HK'),'','','']);
+  rows.push(['','','','','','']);
+  rows.push(['日期 Date','類別 Category','說明 Description','每人金額 ₩/pax','總金額 ₩ Total','HK$ 等值']);
+
+  let grandTotal = 0;
+
+  DAYS.forEach(d => {
+    if(data[d].length === 0) return;
+    rows.push(['','','','','','']); // spacer
+    rows.push([DAY_LABELS[d],'— — — — — —','','','','']);
+
+    data[d].forEach(e => {
+      rows.push([
+        DAY_LABELS[d],
+        e.cat,
+        e.desc || e.cat,
+        e.ppl > 1 ? `${e.krwPer} × ${e.ppl}人` : e.krw,
+        e.krw,
+        parseFloat(krwToHkd(e.krw))
+      ]);
+      grandTotal += e.krw;
+    });
+
+    const dayTotal = data[d].reduce((s,e)=>s+e.krw, 0);
+    rows.push(['','','小計 Subtotal','', dayTotal, parseFloat(krwToHkd(dayTotal))]);
+  });
+
+  rows.push(['','','','','','']);
+  rows.push(['','','總計 Grand Total','', grandTotal, parseFloat(krwToHkd(grandTotal))]);
+  rows.push(['','','','','','']);
+
+  // Category breakdown
+  rows.push(['類別分析 Category Breakdown','','','','','']);
+  rows.push(['類別','','','','金額 ₩','HK$']);
+  const catTotals = {};
+  CATS.forEach(c => { catTotals[c] = 0; });
+  DAYS.forEach(d => data[d].forEach(e => { if(catTotals[e.cat] !== undefined) catTotals[e.cat] += e.krw; }));
+  CATS.filter(c => catTotals[c] > 0)
+    .sort((a,b) => catTotals[b] - catTotals[a])
+    .forEach(c => rows.push([c,'','','', catTotals[c], parseFloat(krwToHkd(catTotals[c]))]));
+
+  // Convert rows to CSV
+  const csv = rows.map(row =>
+    row.map(cell => {
+      const s = String(cell ?? '');
+      // Quote cells that contain commas, quotes, or newlines
+      return s.includes(',') || s.includes('"') || s.includes('\n')
+        ? '"' + s.replace(/"/g,'""') + '"'
+        : s;
+    }).join(',')
+  ).join('\r\n');
+
+  // Add UTF-8 BOM so Excel opens Chinese characters correctly
+  const BOM = '\uFEFF';
+  const blob = new Blob([BOM + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '釜山旅費記錄_07-11Aug2026.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  // Show success feedback
+  const btn = document.querySelector('.export-btn.excel');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ 已下載！用 Excel 開啟 .csv';
+  btn.style.background = '#2A7D4F';
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 3000);
+}
+
+const DAYS = ['d1','d2','d3','d4','d5'];
+const DAY_LABELS = {'d1':'第一天 07/08','d2':'第二天 08/08','d3':'第三天 09/08','d4':'第四天 10/08','d5':'第五天 11/08'};
+const CATS = ['🍽️ 美食','🛍️ 購物','🚕 交通','🎢 門票','🏨 住宿','💊 其他'];
+const CAT_COLORS = {'🍽️ 美食':'#E05C47','🛍️ 購物':'#6B4FBB','🚕 交通':'#1A8A7F','🎢 門票':'#2A7D4F','🏨 住宿':'#4338CA','💊 其他':'#92400E'};
+
+// Load from localStorage
+let data = {};
+DAYS.forEach(d => { data[d] = JSON.parse(localStorage.getItem('busan_'+d) || '[]'); });
+
+let currentDay = 'overview';
+let selectedCat = {};
+DAYS.forEach(d => { selectedCat[d] = '🍽️ 美食'; });
+
+function getRate(){ return parseFloat(document.getElementById('rate').value) || 187; }
+function krwToHkd(krw){ return (krw / getRate()).toFixed(0); }
+function fmt(n){ return parseInt(n).toLocaleString(); }
+
+function save(day){ localStorage.setItem('busan_'+day, JSON.stringify(data[day])); }
+
+function buildDayPanel(day){
+  const panel = document.getElementById('panel-'+day);
+  const label = panel.dataset.label;
+  const entries = data[day];
+  const totalKrw = entries.reduce((s,e)=>s+e.krw,0);
+  const totalHkd = krwToHkd(totalKrw);
+
+  panel.innerHTML = `
+    <div class="day-total-bar">
+      <div class="label">${label}</div>
+      <div class="vals">
+        <div class="krw-total">₩${fmt(totalKrw)}</div>
+        <div class="hkd-total">≈ HK$${fmt(totalHkd)}</div>
+      </div>
+    </div>
+
+    <div class="add-form">
+      <div class="cat-chips">
+        ${CATS.map(c=>`<div class="cat-chip ${selectedCat[day]===c?'selected':''}" data-cat="${c}" onclick="selectCat('${day}','${c}')">${c}</div>`).join('')}
+      </div>
+      <div class="form-row full">
+        <div class="field">
+          <label>說明</label>
+          <input type="text" id="desc-${day}" placeholder="例：烤腸晚餐、的士費..." maxlength="40">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>金額 ₩ 韓圜</label>
+          <input type="number" id="krw-${day}" placeholder="0" min="0" step="100" oninput="updateHint('${day}')">
+        </div>
+        <div class="field">
+          <label>人數</label>
+          <select id="ppl-${day}">
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4" selected>4人</option>
+          </select>
+        </div>
+      </div>
+      <div class="convert-hint" id="hint-${day}">輸入金額自動換算</div>
+      <button class="add-btn" onclick="addEntry('${day}')">＋ 加入記錄</button>
+    </div>
+
+    <div class="entries" id="entries-${day}">
+      ${renderEntries(day)}
+    </div>
+  `;
+}
+
+function renderEntries(day){
+  const entries = data[day];
+  if(!entries.length) return `<div class="empty"><div class="icon">🧾</div>今天未有記錄<br>請在上方輸入支出</div>`;
+  return entries.map((e,i)=>`
+    <div class="entry">
+      <div class="entry-cat" style="background:${CAT_COLORS[e.cat]}22">${e.cat.split(' ')[0]}</div>
+      <div class="entry-body">
+        <div class="entry-desc">${e.desc || e.cat}</div>
+        <div class="entry-meta">${e.cat}${e.ppl>1?' · '+e.ppl+'人':''}</div>
+      </div>
+      <div class="entry-amounts">
+        <div class="entry-krw">₩${fmt(e.krw)}</div>
+        <div class="entry-hkd">HK$${fmt(krwToHkd(e.krw))}</div>
+      </div>
+      <button class="del-btn" onclick="delEntry('${day}',${i})">✕</button>
+    </div>
+  `).join('');
+}
+
+function updateHint(day){
+  const krw = parseInt(document.getElementById('krw-'+day).value)||0;
+  const ppl = parseInt(document.getElementById('ppl-'+day).value)||4;
+  const total = krw * ppl;
+  const hint = document.getElementById('hint-'+day);
+  if(total>0){
+    hint.innerHTML = `₩${fmt(total)} total ≈ <strong>HK$${fmt(krwToHkd(total))}</strong>（${ppl}人 × ₩${fmt(krw)}）`;
+    hint.style.color='var(--gold)';
+  } else {
+    hint.textContent = '輸入金額自動換算';
+    hint.style.color='var(--text2)';
+  }
+}
+
+function selectCat(day, cat){
+  selectedCat[day] = cat;
+  buildDayPanel(day);
+  document.getElementById('desc-'+day).focus();
+}
+
+function addEntry(day){
+  const desc = document.getElementById('desc-'+day).value.trim();
+  const krwPer = parseInt(document.getElementById('krw-'+day).value)||0;
+  const ppl = parseInt(document.getElementById('ppl-'+day).value)||4;
+  const krw = krwPer * ppl;
+  const cat = selectedCat[day];
+  if(krw<=0){ alert('請輸入金額！'); return; }
+  data[day].push({ desc, krw, ppl, krwPer, cat, ts: Date.now() });
+  save(day);
+  buildDayPanel(day);
+  refreshSummary();
+  refreshOverview();
+}
+
+function delEntry(day, idx){
+  data[day].splice(idx,1);
+  save(day);
+  document.getElementById('entries-'+day).innerHTML = renderEntries(day);
+  document.getElementById('panel-'+day).querySelector('.krw-total').textContent = '₩'+fmt(data[day].reduce((s,e)=>s+e.krw,0));
+  document.getElementById('panel-'+day).querySelector('.hkd-total').textContent = '≈ HK$'+fmt(krwToHkd(data[day].reduce((s,e)=>s+e.krw,0)));
+  refreshSummary();
+  refreshOverview();
+}
+
+function refreshSummary(){
+  let total=0, count=0;
+  DAYS.forEach(d=>{ data[d].forEach(e=>{total+=e.krw;count++;})});
+  document.getElementById('grand-krw').textContent = fmt(total);
+  document.getElementById('grand-hkd').textContent = fmt(krwToHkd(total));
+  document.getElementById('grand-count').textContent = count;
+  var hk=document.getElementById('home-krw'); if(hk) hk.textContent = '₩'+fmt(total);
+  var hh=document.getElementById('home-hkd'); if(hh) hh.textContent = 'HK$'+fmt(krwToHkd(total));
+  var hc=document.getElementById('home-count'); if(hc) hc.textContent = count;
+}
+
+function refreshOverview(){
+  const maxDay = Math.max(1,...DAYS.map(d=>data[d].reduce((s,e)=>s+e.krw,0)));
+
+  // Day cards
+  document.getElementById('ov-grid').innerHTML = DAYS.map(d=>{
+    const total = data[d].reduce((s,e)=>s+e.krw,0);
+    const pct = Math.round((total/maxDay)*100);
+    return `<div class="ov-card">
+      <div class="day-name">${DAY_LABELS[d]}</div>
+      <div class="day-krw">₩${fmt(total)}</div>
+      <div class="day-hkd">≈ HK$${fmt(krwToHkd(total))}</div>
+      <div class="day-bar"><div class="day-bar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+
+  // Cat breakdown
+  const catTotals = {};
+  CATS.forEach(c=>{catTotals[c]=0;});
+  DAYS.forEach(d=>data[d].forEach(e=>{ if(catTotals[e.cat]!==undefined) catTotals[e.cat]+=e.krw; }));
+  const rows = CATS.filter(c=>catTotals[c]>0).sort((a,b)=>catTotals[b]-catTotals[a]);
+  document.getElementById('cat-breakdown-rows').innerHTML = rows.length
+    ? rows.map(c=>`<div class="cat-row"><span class="cn">${c}</span><span class="cv">₩${fmt(catTotals[c])} <span style="color:var(--gold)">HK$${fmt(krwToHkd(catTotals[c]))}</span></span></div>`).join('')
+    : '<div style="color:var(--text2);font-size:13px;padding:8px 0;">未有記錄</div>';
+}
+
+function refreshAll(){
+  DAYS.forEach(d=>{ if(document.getElementById('panel-'+d).classList.contains('active')) buildDayPanel(d); });
+  refreshSummary();
+  refreshOverview();
+  DAYS.forEach(d=>{
+    const hint = document.getElementById('hint-'+d);
+    if(hint){ const krw=parseInt(document.getElementById('krw-'+d)?.value)||0; if(krw>0) updateHint(d); }
+  });
+}
+
+function switchDay(day){
+  document.querySelectorAll('.day-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+day).classList.add('active');
+  document.querySelectorAll('.tab-btn')[['overview','d1','d2','d3','d4','d5'].indexOf(day)].classList.add('active');
+  currentDay = day;
+  if(day!=='overview') buildDayPanel(day);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function clearConfirm(){
+  if(confirm('確定清除所有記錄？此操作不可復原！')){
+    DAYS.forEach(d=>{data[d]=[];save(d);});
+    refreshAll();
+    if(currentDay!=='overview') buildDayPanel(currentDay);
+    refreshOverview();
+    refreshSummary();
+  }
+}
+
+// Init
+refreshSummary();
+refreshOverview();
+
+// ===== MASTER APP SWITCHER =====
+var APPS=['home','itin','exp','checklist','tips'];
+function switchApp(app){
+  document.getElementById('homeApp').style.display = app==='home' ? 'block' : 'none';
+  document.getElementById('itinApp').style.display = app==='itin' ? 'block' : 'none';
+  document.getElementById('expApp').style.display = app==='exp' ? 'block' : 'none';
+  document.getElementById('checklistApp').style.display = app==='checklist' ? 'block' : 'none';
+  document.getElementById('tipsApp').style.display = app==='tips' ? 'block' : 'none';
+  APPS.forEach(function(a){ document.getElementById('btn-'+a).classList.toggle('active', a===app); });
+  try{ localStorage.setItem('busan_active_app', app); }catch(e){}
+  window.scrollTo({top:0,behavior:'instant'});
+}
+(function(){
+  try{
+    var saved = localStorage.getItem('busan_active_app');
+    if(saved && APPS.indexOf(saved)>-1 && saved!=='home') switchApp(saved);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
